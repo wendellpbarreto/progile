@@ -88,9 +88,9 @@ WSGI_APPLICATION = 'progile.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('DATABASE_NAME', 'progile'),
-        'USER': os.getenv('DATABASE_USER', 'progile'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD', 'password'),
+        'NAME': 'development',
+        'USER': os.getenv('PG_USER'),
+        'PASSWORD': os.getenv('PG_PASSWORD'),
         'HOST': os.getenv('DATABASE_HOST', '127.0.0.1'),
         'PORT': os.getenv('DATABASE_PORT', '5432'),
     }
