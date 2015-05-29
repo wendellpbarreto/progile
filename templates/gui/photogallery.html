@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block header %}
+    {% include "gui/partials/header.html" %}
+{% endblock %}
+
+{% block container %}
+    <div id="container" class="row">
+        <!-- -  -   -    -     -      -      -       -        -        Content -->
+        <div class="content column">
+            <section class="photogallery">
+                {% if photogallery.active %}
+                   <article class="row post photogallery">
+                        <div class="ribbon">
+                            <div class="line"></div>
+                            <h6 class="editorial">{{ photogallery.editorial|upper }}</h6>
+                            <i class="icon-camera"></i>
+                        </div>
+                        {% thumbnail photogallery.get_photo "1200x675" crop="center" as im %}
+                            <img src="{{ im.url }}" class="img-responsive" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                        <header class="column">
+                            <h2>
+                                <a href="{{ BASE_URL }}/photogallery/{{ photogallery.pk }}">{{ photogallery.title|capfirst }}</a>
+                            </h2>
+                            <ul class="no-bullet meta row">
+                                <li>AUTOR: <a href="{{ BASE_URL }}/posts/?author={{ photogallery.author.pk }}">{{ photogallery.author.name }}</a></li>
+                                <li>{{ photogallery.date }}</li>
+                                <li>EM <a href="{{ BASE_URL }}/posts/?editorial={{ photogallery.editorial.pk }}">{{ photogallery.editorial.name|upper }}</a></li>
+                                <li>{{ photogallery.views }} VISUALIZAÇÕES</li>
+                                <li><a href="{{ BASE_URL }}/photogallery/{{ photogallery.pk }}"><i class="icon-picture-o"></i> {{ photogallery.get_amount }}</a></li>
+                            </ul>
+                        </header>
+                        <div class="description column clearfix">
+                            <p>{{ photogallery.body|safe }}</p>
+                        </div>
+                        <div class="gallery clearfix">
+                            {% for photo in photogallery.photos.all %}
+                                <div class="photo">
+                                {% thumbnail photo.photo "1200x675" crop="center" as im %}
+                                    <img src="{{ im.url }}" class="img-responsive" width="{{ im.width }}" height="{{ im.height }}">
+                                {% endthumbnail %}
+                                    <div class="photo__meta">
+                                        <p class="photo__meta-title">{{ photo.title }}</p><!-- p class='photo__meta-title' -->
+                                        <p class="photo__meta-credits">Créditos: {{ photo.photographer.name }}</p><!-- p class='photo__meta-credits' -->
+                                    </div><!-- div class='photo__meta' -->
+                                </div><!-- div class='photo' -->
+                            {% endfor %}
+                        </div><!-- div class='gallery' -->
+                        <div
+                           class="fb-comments column"
+                           data-href="{{ request.build_absolute_uri }}"
+                           data-numposts="10"
+                           data-width="800"></div>
+                    </article>
+                {% else %}
+                    <article class="row post">
+                        <h3 class="text-center">Galeria de fotos não existe ou foi desativada!</h3>
+                    </article>
+                {% endif %}
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include "gui/partials/footer.html" %}
+{% endblock %}

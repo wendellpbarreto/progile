@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block header %}
+    {% include "gui/partials/header.html" %}
+{% endblock %}
+
+{% block container %}
+    <header class="codrops-header">
+        <div class="hero">
+            <div class="hero__imgwrap">
+                <img class="hero__img tilt-effect" data-tilt-options='{ "opacity" : 0.5, "movement": { "perspective" : 1500, "translateX" : 10, "translateY" : 10, "translateZ" : 2, "rotateX" : 3, "rotateY" : 3 } }' src="{{ STATIC_URL }}images/wk6.jpeg" alt="Hero image" />
+            </div>
+            <h1><span>An Agile Project Manager</span> Progile</h1>
+        </div>
+    </header>
+{% endblock %}
+
+{% block footer %}
+    {% include "gui/partials/footer.html" %}
+{% endblock %}

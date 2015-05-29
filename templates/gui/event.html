@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block header %}
+    {% include "gui/partials/header.html" %}
+{% endblock %}
+
+{% block container %}
+    <div id="container" class="row">
+        <!-- -  -   -    -     -      -      -       -        -        Content -->
+        <div class="content column">
+            <section class="event">
+                {% if event.active %}
+                    <article class="row event post">
+                        <div class="ribbon">
+                            <div class="line"></div>
+                            <i class="icon-star"></i>
+                        </div>
+                        <header>
+                            <h2>
+                                <a href="{{ BASE_URL }}/event/{{ event.pk }}">{{ event.title|capfirst }}</a>
+                            </h2>
+                            <ul class="no-bullet meta row">
+                                <li>AUTOR: <a href="{{ BASE_URL }}/posts/?author={{ event.author.pk }}">{{ event.author.name }}</a></li>
+                                <li>{{ event.date }}</li>
+                                <li>EVENTO</li>
+                                <li>{{ event.views }} VISUALIZAÇÕES</li>
+                            </ul>
+                        </header>
+                        <div class="description">
+                            <p class="text-justify">{{ event.body|striptags|capfirst }}</p>
+                        </div>
+                        <div class="library">
+                            <div class="carousel__video">
+                            {% for video in event.all_videos %}
+                                {% if video.get.youtube %}
+                                    <div class="item-video" data-merge="1">
+                                        <a class="owl-video" href="https://www.youtube.com/watch?v={{ video.get.youtube }}"></a>
+                                    </div>
+                                {% elif video.get.vimeo %}
+                                    <div class="item-video" data-merge="3">
+                                        <a class="owl-video" href="http://vimeo.com/{{ video.get.vimeo }}"></a>
+                                    </div>
+                                {% else %}
+                                    <div class="item-video" data-merge="1">{{ video.get.youtube }}</div>
+                                {% endif %}
+                            {% endfor %}
+                            </div>
+                        </div><!-- div class='library' -->
+                        <div
+                           class="fb-comments column"
+                           data-href="{{ request.build_absolute_uri }}"
+                           data-numevents="10"
+                           data-width="800"></div>
+                    </article>
+                {% else %}
+                    <article class="row post">
+                        <h3 class="text-center">Evento não existe ou foi desativado!</h3>
+                    </article>
+                {% endif %}
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include "gui/partials/footer.html" %}
+{% endblock %}

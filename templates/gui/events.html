@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block header %}
+    {% include "gui/partials/header.html" %}
+{% endblock %}
+
+{% block container %}
+    <div id="container" class="row">
+
+        <!-- -  -   -    -     -      -      -       -        -        Aside -->
+        {% include "gui/partials/aside.html" %}
+
+        <!-- -  -   -    -     -      -      -       -        -        Content -->
+        <div class="content large-14 columns">
+            {% if events %}
+                <section class="events">
+                    {% for event in events %}
+                        <article class="row event post">
+                            <div class="ribbon">
+                                <div class="line"></div>
+                                <i class="icon-star"></i>
+                            </div>
+                            <header class="column">
+                                <h2>
+                                    <a href="{{ BASE_URL }}/event/{{ event.pk }}">{{ event.title|capfirst }}</a>
+                                </h2>
+                                <ul class="no-bullet meta row">
+                                    <li>AUTOR: <a href="{{ BASE_URL }}/posts/?author={{ event.author.pk }}">{{ event.author.name }}</a></li>
+                                    <li>{{ event.date }}</li>
+                                    <li>EVENTO</li>
+                                    <li>{{ event.views }} VISUALIZAÇÕES</li>
+                                </ul>
+                            </header>
+                            <div class="description column">
+                                <p class="text-justify">{{ event.body|striptags|capfirst|truncatechars:256 }}</p>
+                            </div>
+                            <div class="read-more row text-center">
+                                <a href="{{ BASE_URL }}/event/{{ event.pk }}" class="button">Saiba mais</a>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </section>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include "gui/partials/footer.html" %}
+{% endblock %}

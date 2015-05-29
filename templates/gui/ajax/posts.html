@@ -1,0 +1,147 @@
+{% load thumbnail %}
+
+{% if posts %}
+    <section class="posts">
+        <header class="posts-header">
+            <h3 class="posts-header-title">{% if editorial %}{{ editorial }}{% endif %}</h3>
+        </header><!-- header class='posts-header' -->
+        {% for post in posts %}
+            {% if post.type == "notice" %}
+                <article class="row post notice">
+                    <figure>
+                        {% thumbnail post.photo "1200x675" crop="center" as im %}
+                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                        <figcaption>
+                            <div class="line"></div>
+                            <h6 class="editorial">{{ post.editorial|upper }}</h6>
+                        </figcaption>
+                    </figure>
+                    <header class="column">
+                        <h2>
+                            <a href="{{ BASE_URL }}/notice/{{ post.pk }}">{{ post.title|capfirst }}</a>
+                        </h2>
+                        <ul class="no-bullet meta row">
+                            <li>AUTOR: <a href="{{ BASE_URL }}/posts/?author={{ post.author.pk }}">{{ post.author.name }}</a></li>
+                            <li>{{ post.date }}</li>
+                            <li>EM <a href="{{ BASE_URL }}/posts/?editorial={{ post.editorial.pk }}">{{ post.editorial.name|upper }}</a></li>
+                            <li>{{ post.views }} VISUALIZAÇÕES</li>
+                        </ul>
+                    </header>
+                    <div class="description column">
+                        <p>{{ post.body|striptags|capfirst|truncatechars:256 }}</p>
+                    </div>
+                    <div class="read-more column text-center">
+                        <a href="{{ BASE_URL }}/notice/{{ post.pk }}" class="button">Leia mais</a>
+                    </div>
+                </article>
+            {% elif post.type == "photogallery" %}
+                <article class="row post photogallery">
+                    <div class="ribbon">
+                        <div class="line"></div>
+                        <h6 class="editorial">{{ post.editorial|upper }}</h6>
+                        <i class="icon-camera"></i>
+                    </div>
+                    <a href="{{ BASE_URL }}/photogallery/{{ post.pk }}">
+                        {% thumbnail post.get_photo "1200x675" crop="center" as im %}
+                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                    </a>
+                    <header class="column">
+                        <h2>
+                            <a href="{{ BASE_URL }}/photogallery/{{ post.pk }}">{{ post.title|capfirst }}</a>
+                        </h2>
+                        <ul class="no-bullet meta row">
+                            <li>AUTOR: <a href="{{ BASE_URL }}/posts/?author={{ post.author.pk }}">{{ post.author.name }}</a></li>
+                            <li>{{ post.date }}</li>
+                            <li>EM <a href="{{ BASE_URL }}/posts/?editorial={{ post.editorial.pk }}">{{ post.editorial.name|upper }}</a></li>
+                            <li>{{ post.views }} VISUALIZAÇÕES</li>
+                            <li><a href="{{ BASE_URL }}/photogallery/{{ post.pk }}"><i class="icon-picture-o"></i> {{ post.get_amount }}</a></li>
+                        </ul>
+                    </header>
+                    <div class="read-more column text-center">
+                        <a href="{{ BASE_URL }}/photogallery/{{ post.pk }}" class="button">Veja galeria completa</a>
+                    </div>
+                </article>
+            {% elif post.type == "video library" %}
+                <article class="row post video-library">
+                    <div class="ribbon">
+                        <div class="line"></div>
+                        <h6 class="editorial">{{ post.editorial|upper }}</h6>
+                        <i class="icon-video-camera"></i>
+                    </div>
+                    {{ post.videos.0.video|safe }}
+                    <header class="column">
+                        <h2>
+                            <a href="{{ BASE_URL }}/video_library/{{ post.pk }}">{{ post.title|capfirst }}</a>
+                        </h2>
+                        <ul class="no-bullet meta row">
+                            <li>AUTOR: <a href="{{ BASE_URL }}/posts/?author={{ post.author.pk }}">{{ post.author.name }}</a></li>
+                            <li>{{ post.date }}</li>
+                            <li>EM <a href="{{ BASE_URL }}/posts/?editorial={{ post.editorial.pk }}">{{ post.editorial.name|upper }}</a></li>
+                            {% if post.is_videoteca %}
+                                <li><a href="{{ BASE_URL }}/video_library/{{ post.pk}}"><i class="icon-film"></i> {{ post.get_amount }}</a></li>
+                            {% else %}
+                                <li>VÍDEO</li>
+                            {% endif %}
+                        </ul>
+                    </header>
+                    {% if post.is_videoteca %}
+                        <div class="read-more column text-center">
+                            <a href="{{ BASE_URL }}/video_library/{{ post.pk }}" class="button">Assista todos os vídeos</a>
+                        </div>
+                    {% endif %}
+                </article>
+            {% elif post.type == "podcast" %}
+                <article class="row post podcast">
+                    <div class="ribbon">
+                        <div class="line"></div>
+                        <i class="icon-music"></i>
+                    </div>
+                    <div class="text-center podcast-iframe">
+                        {{ post.body|safe }}
+                    </div>
+                    <header class="column">
+                        <h2>
+                            <a href="{{ post.download_url }}">{{ post.title|capfirst }}</a>
+                        </h2>
+                        <ul class="no-bullet meta row">
+                            <li>AUTOR: <a href="{{ BASE_URL }}/posts/?author={{ post.author.pk }}">{{ post.author.name }}</a></li>
+                            <li>{{ post.date }}</li>
+                            <li>PODCAST</li>
+                            <!-- <li>{{ post.views }} VISUALIZAÇÕES</li> -->
+                        </ul>
+                    </header>
+                    <div class="description column">
+                        <p class="text-justify">{{ post.subtitle }}</p>
+                    </div>
+                </article>
+            {% elif post.type == "event" %}
+                <article class="row post event">
+                    <div class="ribbon">
+                        <div class="line"></div>
+                        <i class="icon-star"></i>
+                    </div>
+                    <header class="column">
+                        <h2>
+                            <a href="{{ BASE_URL }}/event/{{ post.pk }}">{{ post.title|capfirst }}</a>
+                        </h2>
+                        <ul class="no-bullet meta row">
+                            <li>AUTOR: <a href="{{ BASE_URL }}/posts/?author={{ post.author.pk }}">{{ post.author.name }}</a></li>
+                            <li>{{ post.date }}</li>
+                            <li>EVENTO</li>
+                            <li>{{ post.views }} VISUALIZAÇÕES</li>
+                        </ul>
+                    </header>
+                    <div class="description column">
+                        <p class="text-justify">{{ post.body|striptags|capfirst|truncatechars:256 }}</p>
+                    </div>
+                    <div class="read-more column text-center">
+                        <a href="{{ BASE_URL }}/event/{{ post.pk }}" class="button">Saiba mais</a>
+                    </div>
+                </article>
+            {% endif %}
+            </article>
+        {% endfor %}
+    </section>
+{% endif %}

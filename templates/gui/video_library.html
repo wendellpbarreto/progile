@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block header %}
+    {% include "gui/partials/header.html" %}
+{% endblock %}
+
+{% block container %}
+    <div id="container" class="row">
+        <!-- -  -   -    -     -      -      -       -        -        Aside -->
+        {% include "gui/partials/aside.html" %}
+
+        <!-- -  -   -    -     -      -      -       -        -        Content -->
+        <div class="content large-14 columns">
+            <section class="video_library">
+                {% if video_library.active %}
+                    <article class="row video-library post">
+                        <div class="ribbon">
+                            <div class="line"></div>
+                            <h6 class="editorial">{{ video_library.editorial|upper }}</h6>
+                            <i class="icon-video-camera"></i>
+                        </div>
+                        {% if not video_library.is_videoteca %}
+                            {{ video_library.get_videos.0.video|safe }}
+                        {% endif %}
+                        <header class="column">
+                            <h2>
+                                <a href="{{ BASE_URL }}/video_library/{{ video_library.pk }}">{{ video_library.title|capfirst }}</a>
+                            </h2>
+                            <ul class="no-bullet meta row">
+                                <li>AUTOR: <a href="{{ BASE_URL }}/posts/?author={{ video_library.author.pk }}">{{ video_library.author.name }}</a></li>
+                                <li>{{ video_library.date }}</li>
+                                <li>EM <a href="{{ BASE_URL }}/posts/?editorial={{ video_libray.editorial.pk }}">{{ video_library.editorial.name|upper }}</a></li>
+                                {% if video_library.is_videoteca %}
+                                    <li><a href="{{ BASE_URL }}/video_library/{{ video_library.pk}}"><i class="icon-film"></i> {{ video_library.get_amount }}</a></li>
+                                {% else %}
+                                    <li>VÍDEO</li>
+                                {% endif %}
+                            </ul>
+                        </header>
+                        <div class="description column clearfix">
+                            <p>{{ video_library.body|safe }}</p>
+                        </div>
+                        {% if video_library.is_videoteca %}
+                            <div class="library clearfix">
+                                {% for video in video_library.videos.all %}
+                                    <div class="video">
+                                        {{ video.video|safe }}
+                                    </div><!-- div class='video' -->
+                                {% endfor %}
+                            </div><!-- div class='library' -->
+                        {% endif %}
+                        <div
+                           class="fb-comments column"
+                           data-href="{{ request.build_absolute_uri }}"
+                           data-numposts="10"
+                           data-width="800"></div>
+                    </article>
+                {% else %}
+                    <article class="row post">
+                        <h3 class="text-center">Videoteca não existe ou foi desativada!</h3>
+                    </article>
+                {% endif %}
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include "gui/partials/footer.html" %}
+{% endblock %}

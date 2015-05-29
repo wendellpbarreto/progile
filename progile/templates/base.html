@@ -1,15 +1,81 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-js" lang="pt-br">
 <head>
-    <title>{% block title %}{% endblock %}</title>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="pingback" href="">
+    <meta name="robots" content="index,follow">
+    <meta name="viewport" content="initial-scale=1.0 maximum-scale=1.0 user-scalable=no">
+    <!-- meta tags -->
+    <meta name="author" content="DZ3 Design e Tecnologia">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <!-- facebook tags -->
+    <meta property="og:image" content="http://placehold.it/120x120">
+    <meta property="og:title" content="">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="">
+    <meta property="og:type" content="website">
+    <!-- twitter tags -->
+    <meta name="twitter:card" content="">
+    <meta name="twitter:image" content="http://placehold.it/120x120">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:creator" content="">
+    <!-- scripts -->
+    <script src="{{ STATIC_ROOT }}/ciencias-aplicadas-theme/assets/bower_components/modernizr/modernizr.js"></script>
+    <!-- fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ STATIC_ROOT }}/ciencias-aplicadas-theme/assets/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="{{ STATIC_ROOT }}/ciencias-aplicadas-theme/assets/fonts/simple-line-icons/simple-line-icons.css">
+    <!-- stylesheets::vendor -->
+    <link rel="stylesheet" href="{{ STATIC_ROOT }}/ciencias-aplicadas-theme/assets/vendor/animate/animate.css">
+    <link rel="stylesheet" href="{{ STATIC_ROOT }}/ciencias-aplicadas-theme/assets/vendor/owl.carousel/assets/owl.carousel.css">
+    <!-- stylesheets::main -->
+    <link rel="stylesheet" href="{{ STATIC_ROOT }}/ciencias-aplicadas-theme/assets/styles/main.css">
 </head>
-<body>
+	<body>
+		<!-- -  -   -    -     -      -      -       -        -        Header -->
+		{% block header %} {% endblock %}
 
-<div id="container">
-    {% block main %}
-    {% endblock %}
-</div>
+		<!-- -  -   -    -     -      -      -       -        -        Menu -->
+		{% block menu %} {% endblock %}
 
-</body>
+		<!-- -  -   -    -     -      -      -       -        -        Container -->
+		{% block container %} {% endblock %}
+
+		<!-- -  -   -    -     -      -      -       -        -        Footer -->
+		{% block footer %} {% endblock %}
+
+        <script src="{{ STATIC_URL }}bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="{{ STATIC_URL }}bower_components/foundation/js/foundation.js"></script>
+        <script src="{{ STATIC_URL }}vendor/owlcarousel/owl.carousel.min.js"></script>
+        <script src="{{ STATIC_URL }}vendor/classie/classie.js"></script>
+		<script src="{{ STATIC_URL }}scripts/main.min.js"></script>
+
+        <!-- google analytics -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-55872503-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+
+        <!-- facebook sdk -->
+        <div id="fb-root"></div>
+        <script>
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+	</body>
 </html>
+

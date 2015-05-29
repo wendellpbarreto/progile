@@ -1,0 +1,51 @@
+{
+  "name": "progile",
+  "version": "0.2.0",
+  "homepage": "https://github.com/wendellpbarreto/progile",
+  "authors": [
+    "Wendell P. Barreto <wendellp.barreto@gmail.com>"
+  ],
+  "description": "progile agency website",
+  "main": "progile/progile/assets/js/app.js",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "progile",
+    "agência",
+    "ufrn",
+    "natal",
+    "rn",
+    "rio",
+    "grande",
+    "do",
+    "norte",
+    "website",
+    "site",
+    "notícias",
+    "fotogaleria",
+    "fotogalerias",
+    "vídeo",
+    "vídeos",
+    "evento",
+    "evento",
+    "podcast",
+    "podcasts",
+    "cientec",
+    "comunicação",
+    "experimental",
+    "multimídia"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "~5.4.3",
+    "pace": "~0.5.6"
+  }
+}

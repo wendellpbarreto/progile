@@ -1,0 +1,56 @@
+<div class="row text-center">
+    <ul class="pagination">
+        {% if objects.has_previous %}
+            <li class="arrow">
+                <a data-page="{{ objects.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+            <li class="arrow unavailable"><a>&laquo;</a></li>
+        {% endif %}
+
+        {% if objects.has_less_ten %}
+            <li><a data-page="{{ objects.has_less_ten }}">{{ objects.has_less_ten }}</a></li>
+            <li><a data-page="{{ objects.has_less_ten | add:"1" }}">{{ objects.has_less_ten | add:"1" }}</a></li>
+            <li class="unavailable"><a>&hellip;</a></li>
+        {% endif %}
+
+        {% if objects.has_less_three %}
+            <li><a data-page="{{ objects.has_less_three }}">{{ objects.has_less_three }}</a></li>
+        {% endif %}
+
+
+        {% if objects.has_less_two %}
+            <li><a data-page="{{ objects.has_less_two }}">{{ objects.has_less_two }}</a></li>
+        {% endif %}
+
+
+        {% if objects.has_previous %}
+            <li><a data-page="{{ objects.previous_page_number }}">{{ objects.previous_page_number }}</a></li>
+        {% endif %}
+
+        <li class="current"><a>{{ objects.page }}</a></li>
+
+        {% if objects.has_next %}
+            <li><a data-page="{{ objects.next_page_number }}">{{ objects.next_page_number }}</a></li>
+        {% endif %}
+
+        {% if objects.has_more_two %}
+            <li><a data-page="{{ objects.has_more_two }}">{{ objects.has_more_two }}</a></li>
+        {% endif %}
+
+        {% if objects.has_more_three %}
+            <li><a data-page="{{ objects.has_more_three }}">{{ objects.has_more_three }}</a></li>
+        {% endif %}
+
+        {% if objects.has_more_ten %}
+            <li class="unavailable"><a>&hellip;</a></li>
+            <li><a data-page="{{ objects.has_more_ten }}">{{ objects.has_more_ten }}</a></li>
+            <li><a data-page="{{ objects.has_more_ten | add:"1" }}">{{ objects.has_more_ten | add:"1" }}</a></li>
+        {% endif %}
+
+        {% if objects.has_next %}
+            <li class="arrow"><a data-page="{{ objects.next_page_number }}">&raquo;</a></li>
+        {% else %}
+            <li class="arrow unavailable"><a>&raquo;</a></li>
+        {% endif %}
+    </ul>
+</div>

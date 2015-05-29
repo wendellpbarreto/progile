@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block header %}
+    {% include "gui/partials/header.html" %}
+{% endblock %}
+
+{% block container %}
+    <div id="container" class="row">
+        <!-- -  -   -    -     -      -      -       -        -        Aside -->
+        {% include "gui/partials/aside.html" %}
+
+        <!-- -  -   -    -     -      -      -       -        -        Content -->
+        <div class="content large-14 columns">
+            <section class="notice">
+                {% if notice.active %}
+                    <article class="row post">
+                        <figure>
+                            {% thumbnail notice.photo "1200x675" crop="center" as im %}
+                                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                            {% endthumbnail %}
+                            <figcaption>
+                                <div class="line"></div>
+                                <h6>{{ notice.editorial|upper }}</h6>
+                            </figcaption>
+                        </figure>
+                        <header class="column">
+                            <h2>{{ notice.title|capfirst }}</h2>
+                            <ul class="no-bullet meta row">
+                                <li>AUTOR: <a href="{{ BASE_URL }}/posts/?author={{ notice.author.pk }}">{{ notice.author.name }}</a></li>
+                                <li>{{ notice.date }}</li>
+                                <li>EM <a href="{{ BASE_URL }}/posts/?editorial={{ notice.editorial.pk }}">{{ notice.editorial.name|upper }}</a></li>
+                                <li>{{ notice.views }} VISUALIZAÇÕES</li>
+                                <!-- <li><a href="#"><i class="icon-heart2"></i> {{ notice.likes }}</a></li> -->
+                            </ul>
+                        </header>
+                        <div class="description column clearfix">
+                            <p>{{ notice.body|safe }}</p>
+                        </div>
+                        <div
+                           class="fb-comments column"
+                           data-href="{{ request.build_absolute_uri }}"
+                           data-numposts="10"
+                           data-width="800"></div>
+                    </article>
+                {% else %}
+                    <article class="row post">
+                        <h3 class="text-center">Notícia não existe ou foi desativada!</h3>
+                    </article>
+                {% endif %}
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include "gui/partials/footer.html" %}
+{% endblock %}
