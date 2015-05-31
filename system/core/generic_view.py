@@ -43,8 +43,10 @@ class GenericView(View):
             leftover_data = None
 
         try:
-            response = render_to_string(template, template_data, context_instance=RequestContext(request))
-            # response["template"] = render_to_string(template, template_data, context_instance=RequestContext(request))
+            if leftover_data:
+                response = leftover_data
+            elif template_data:
+                return render_to_response(self.get_template_name(request), template_data, context_instance=RequestContext(request))
         except Exception, e:
             pass
 
@@ -58,8 +60,10 @@ class GenericView(View):
             pass
 
         try:
-            return HttpResponse(response)
-            # return HttpResponse(json.dumps(response))
+            logger.info('|' + '-' * 22)
+            logger.info(response)
+            logger.info('|' + '-' * 22)
+            return HttpResponse(json.dumps(response), content_type='application/json')
         except Exception, e:
             logger.error(str(e))
 
@@ -77,6 +81,22 @@ class GenericView(View):
         return response
 
     def _request(self, request, *args, **kwargs):
+        logger.info('|' + '-' * 22)
+        logger.info('| REQUEST.METHOD: ' + request.method)
+        logger.info('|' + '-' * 22)
+
+        if not request.user.is_authenticated():
+            slug = None
+
+            try:
+                slug = str(self.kwargs["slug"])
+            except Exception, e:
+                logger.error(str(e))
+
+            if slug != "home" and slug != "signin":
+                logger.warning(">user wants " + slug)
+                logger.warning(">user isn't authenticated");
+                return HttpResponseRedirect('/home/')
 
         if request.is_ajax():
 
@@ -155,14 +175,19 @@ class GenericView(View):
 
             return app_name + "/404.html"
         else:
-            if request.is_ajax():
-                paths.append(app_name_slashed + page_name_slashed + "ajax/" + slug + ".html")
-                paths.append(app_name_slashed + "ajax/" + page_name + ".html")
-                paths.append(app_name_slashed + "ajax/" + slug + ".html")
-            else:
-                paths.append(app_name_slashed + page_name_slashed + slug + ".html")
-                paths.append(app_name_slashed + page_name + ".html")
-                paths.append(page_name_slashed + slug + ".html")
+            paths.append(slug + ".html")
+            paths.append(page_name + ".html")
+            paths.append(page_name_slashed + "ajax/" + slug + ".html")
+            paths.append("ajax/" + page_name + ".html")
+            paths.append("ajax/" + slug + ".html")
+            paths.append(page_name_slashed + slug + ".html")
+            paths.append(app_name_slashed + page_name_slashed + "ajax/" + slug + ".html")
+            paths.append(app_name_slashed + "ajax/" + page_name + ".html")
+            paths.append(app_name_slashed + "ajax/" + slug + ".html")
+            paths.append(app_name_slashed + page_name_slashed + slug + ".html")
+            paths.append(app_name_slashed + page_name + ".html")
+            paths.append(page_name_slashed + slug + ".html")
+            
 
             for path in paths:
                 try:

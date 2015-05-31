@@ -30,29 +30,59 @@ a:hover, a:focus {
 }
 
 /* Header */
-.codrops-header {
+.hero__wrapper {
 	text-align: center;
 	height: 100vh;
 	overflow: hidden;
-	background: url(../images/wk6.jpeg) no-repeat center center;
+	background: url(../images/bg@home.jpeg) no-repeat center center;
 	background-size: auto 100vh;
 }
 
-.codrops-header h1 {
-	margin: 0.5em 0 0;
-	letter-spacing: -1px;
-	font-weight: 400;
-	font-size: 4.25em;
-	line-height: 1;
-	position: absolute;
-	width: 100%;
-	top: 25vh;
-	color: #fff;
-	pointer-events: none;
-	font-family: 'Playfair Display', Georgia, serif;
+.hero__wrapper {
+	.hero__meta {
+		margin: 0.5em 0 0;
+		width: 100%;
+		top: 25vh;
+		position: absolute;
+	}
+	h1 {
+		pointer-events: none;
+		letter-spacing: -1px;
+		font-weight: 400;
+		font-size: 4.25em;
+		line-height: 1;
+		color: #fff;
+		font-family: 'Playfair Display', Georgia, serif;
+	}
+	.hero__meta-anchors {
+		margin-top: 10px;
+		font-style: italic;
+		font-weight: 100;
+		font-family: 'Playfair Display', Georgia, serif;
+		a {
+			color: #FB9A49;
+			transition: color 0.5s ease-in-out;
+			&:hover {
+				color: #000;
+			}
+		}
+		span {
+			color: #FB9A49;
+		}
+	}
 }
 
-.codrops-header h1 span {
+.hero__forms {
+	margin: 0.5em 0 0;
+	width: 100%;
+	top: 50vh;
+	position: absolute;
+	.hero__forms-login {
+	}
+}
+
+
+.hero__wrapper h1 span {
 	display: block;
 	padding: 2em 0 1em;
 	color: #3a3231;
@@ -76,7 +106,7 @@ a:hover, a:focus {
 	margin: 0 0 0 5px;
 }
 
-.hero {
+#hero {
 	position: absolute;
 	top: 50px;
 	left: 50px;
@@ -85,14 +115,14 @@ a:hover, a:focus {
 	overflow: hidden;
 }
 
-.hero__imgwrap {
+.hero__crop {
 	position: relative;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
 }
 
-.hero__imgwrap::after {
+.hero__crop::after {
 	content: '';
 	position: absolute;
 	background: rgba(76,0,1,0.1);
@@ -113,8 +143,8 @@ a:hover, a:focus {
 	transform: translate3d(-50%,-50%,0);
 }
 
-.hero__imgwrap .tilt__back,
-.hero__imgwrap .tilt__front {
+.hero__crop .tilt__back,
+.hero__crop .tilt__front {
 	background-size: auto 100vh;
 }
 
@@ -377,9 +407,9 @@ a:hover, a:focus {
 }
 
 @media screen and (min-aspect-ratio: 1440/960) {
-	.hero__imgwrap .tilt__back,
-	.hero__imgwrap .tilt__front,
-	.codrops-header {
+	.hero__crop .tilt__back,
+	.hero__crop .tilt__front,
+	.hero__wrapper {
 		background-size: 100vw auto;
 	}
 	.hero__img {
@@ -389,10 +419,10 @@ a:hover, a:focus {
 }
 
 @media screen and (max-width: 40em){
-	.codrops-header h1 {
+	.hero__wrapper h1 {
 		font-size: 2.5em;
 	}
-	.hero {
+	#hero {
 		left: 20px;
 		bottom: 20px;
 		right: 20px;

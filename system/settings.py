@@ -83,6 +83,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 )
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 ROOT_URLCONF = 'system.urls'
 
 WSGI_APPLICATION = 'system.wsgi.application'
@@ -148,6 +152,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
 )
 
+LOGIN_URL = '/home/'
+
 
 # Media files
 
@@ -207,7 +213,7 @@ LOGGING = {
             'formatter': 'standard',
         },
         'console':{
-            'level':'INFO',
+            'level':'DEBUG',
             'class':'logging.StreamHandler',
             'formatter': 'standard'
         },
@@ -234,6 +240,9 @@ LOGGING = {
         'system.gui': {
             'handlers': ['console', 'logfile'],
             'level': 'DEBUG',
+        },
+        'django.db': {
+            # django also has database level logging
         },
     }
 }

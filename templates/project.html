@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}Project {{ project.name }}{% endblock %}
+
+{% block header %}
+    {% include "partials/topbar.html" %}
+{% endblock %}
+
+{% block container %}
+	<div id="page">
+    	<p>{{ project.name }}</p>
+
+		<a href="/projects/">back</a>
+	</div>
+{% endblock %}
+
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock %}

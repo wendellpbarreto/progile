@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}New Project{% endblock %}
+
+{% block header %}
+    {% include "partials/topbar.html" %}
+{% endblock %}
+
+{% block container %}
+	<div id="page">
+		<form action="/new_project/" method="post">
+			{% csrf_token %}
+			<input type="text" name="name" id="name" placeholder="Project name" data-required="Project name is mandatory.">
+			
+			<label for="organization">Organization</label>
+			<select name="organization_name" id="organization_name">
+				<option value="0">None</option>
+				{% for organization in organizations %}
+					<option value="{{ organization.name }}">{{ organization.name }}</option>
+				{% endfor %}
+			</select>
+
+			<label for="visibility">Visible for everyone</label>
+			<input type="checkbox" name="visibility" id="visibility" value="False"> 
+	
+			<textarea name="description" id="description" cols="30" rows="10" placeholder="Project description"></textarea>
+			
+			<input type="submit" value="save" data-submit="true">
+
+		</form>
+	</div>
+{% endblock %}
+
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock %}

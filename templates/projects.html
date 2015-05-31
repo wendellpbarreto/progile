@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}Projects{% endblock %}
+
+{% block header %}
+    {% include "partials/topbar.html" %}
+{% endblock %}
+
+{% block container %}
+	<div id="page">
+        {% for project in projects %}
+            <a href="/project/{{ project.pk }}">{{ project.name }} </a>
+
+            <br>
+        {% endfor %}
+
+		<a href="/new_project/">Create a new project</a>
+	</div>
+{% endblock %}
+
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock %}

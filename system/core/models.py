@@ -12,6 +12,7 @@ from django.db import models
 from django.db.models import signals
 from django.utils.translation import ugettext_lazy as _
 from sorl.thumbnail import ImageField
+from django.contrib.auth.models import User
 
 logger = logging.getLogger(__name__)
 
@@ -45,8 +46,18 @@ STATES = (
     ("TO", "TO"),
 )
 
+class GetOrNoneManager(models.Manager):
+    def get_or_none(self, **kwargs):
+        try:
+            return self.get(**kwargs)
+        except self.model.DoesNotExist:
+            return None
+
 class Organization(models.Model):
-    name = models.CharField(max_length=32, primary_key=True)
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=32, unique=True, blank=False)
+
+    objects = GetOrNoneManager()
 
     class Meta:
         verbose_name = "Organization"
@@ -54,10 +65,13 @@ class Organization(models.Model):
         db_table = "organization"
 
     def __unicode__(self):
-        return u"%s" % (self.name.lowercase())
+        return u"%s" % (self.name.lower())
 
 class Speciality(models.Model):
-    name = models.CharField(max_length=32, primary_key=True)
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=32, unique=True, blank=False)
+
+    objects = GetOrNoneManager()
 
     class Meta:
         verbose_name = "Speciality"
@@ -65,17 +79,19 @@ class Speciality(models.Model):
         db_table = "speciality"
 
     def __unicode__(self):
-        return u"%s" % (self.name.lowercase())
+        return u"%s" % (self.name.lower())
 
-class User(models.Model):
-    CPF = models.CharField(max_length=11, primary_key=True)
-    email = models.CharField(max_length=128, unique=True)
-    password = models.CharField(max_length=16)
+class CustomUser(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, related_name='custom_user')
     first_name = models.CharField(max_length=64)
-    last_name = models.CharField(max_length=128)
-    bio = models.CharField(max_length=512)
-    user_has_organization = models.ManyToManyField(Organization, through='UserHasOrganization')
-    user_has_speciality = models.ManyToManyField(Speciality, through='UserHasSpeciality')
+    last_name = models.CharField(max_length=128, blank=True)
+    bio = models.CharField(max_length=512, blank=True)
+
+    organization = models.ManyToManyField(Organization, through='UserHasOrganization')
+    speciality = models.ManyToManyField(Speciality, through='UserHasSpeciality')
+
+    objects = GetOrNoneManager()
 
     class Meta:
         verbose_name = "User"
@@ -83,34 +99,27 @@ class User(models.Model):
         db_table = "user"
 
     def __unicode__(self):
-        return u"%s" % (self.email.lowercase())
+        return u"%s" % (self.user.username.lower())
 
 class UserHasOrganization(models.Model):
-    user_CPF = models.ForeignKey(User, db_column='user_CPF')
-    organization_name = models.ForeignKey(Organization, db_column='organization_name')
+    user_id = models.ForeignKey(CustomUser, db_column='user_id')
+    organization_id = models.ForeignKey(Organization, db_column='organization_id')
+    manages = models.BooleanField(default=False)
 
 class UserHasSpeciality(models.Model):
-    user_CPF = models.ForeignKey(User, db_column='user_CPF')
-    speciality_name = models.ForeignKey(Speciality, db_column='speciality_name')
-
-class Visibility(models.Model):
-    name = models.CharField(max_length=32, primary_key=True)
-    
-    class Meta:
-        verbose_name = "Visibility"
-        verbose_name_plural = "Visibilities"
-        db_table = "visibility"
-
-    def __unicode__(self):
-        return u"%s" % (self.name.lowercase())
+    user_id = models.ForeignKey(CustomUser, db_column='user_id')
+    speciality_id = models.ForeignKey(Speciality, db_column='speciality_id')
 
 class Project(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=64)
-    description = models.TextField(max_length=512)
-    organization_name = models.ForeignKey(Organization, null=True)
-    visibility_name = models.ForeignKey(Visibility)
-    project_has_user = models.ManyToManyField(User, through='ProjectHasUser')
+    organization = models.ForeignKey(Organization, null=True)
+    visibility = models.BooleanField(default=False)
+    description = models.TextField(max_length=512, blank=True)
+
+    user = models.ManyToManyField(CustomUser, through='ProjectHasUser')
+
+    objects = GetOrNoneManager()
 
     class Meta:
         verbose_name = "Project"
@@ -118,10 +127,10 @@ class Project(models.Model):
         db_table = "project"
 
     def __unicode__(self):
-        return u"%s" % (self.name.lowercase())
+        return u"%s" % (self.name.lower())
 
 class ProjectHasUser(models.Model):
-    user_CPF = models.ForeignKey(User, db_column='user_CPF')
+    user_id = models.ForeignKey(CustomUser, db_column='user_id')
     project_id = models.ForeignKey(Project, db_column='project_id')
     manages = models.BooleanField(default=False)
 
@@ -133,6 +142,8 @@ class Sprint(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     project = models.ForeignKey(Project)
+
+    objects = GetOrNoneManager()
 
     class Meta: 
         verbose_name = "Sprint"
@@ -148,6 +159,8 @@ class Board(models.Model):
     order = models.IntegerField()
     project = models.ForeignKey(Project)
     
+    objects = GetOrNoneManager()
+
     class Meta:
         verbose_name = "Board"
         verbose_name_plural = "Boards"
@@ -160,6 +173,8 @@ class Tag(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=32)
     color = models.CharField(max_length=16)
+
+    objects = GetOrNoneManager()
 
     class Meta:
         verbose_name = "Tag"
@@ -176,7 +191,10 @@ class Task(models.Model):
     points = models.IntegerField()
     sprint_id = models.ForeignKey(Sprint, null=True)
     board_id = models.ForeignKey(Board)
-    task_has_tag = models.ManyToManyField(Tag, through='TaskHasTag')
+
+    task = models.ManyToManyField(Tag, through='TaskHasTag')
+
+    objects = GetOrNoneManager()
 
     class Meta: 
         verbose_name = "Task"

@@ -7,26 +7,237 @@ import operator
 from django.shortcuts import render
 from itertools import chain
 from django.db.models import F, Q
-
+from django.contrib.auth.models import User
 from .generic_view import GenericView
 from .models import *
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+
 
 logger = logging.getLogger(__name__)
 
 class GUI(GenericView):
 
     def __init__(self):
-       pass
+        pass
 
-    def home(self, request):
-       
+    def projects(self, request):
+        projects = Project.objects.filter(user=request.user.custom_user).order_by('name')
 
         return {
             'template' : {
-                'title' : 'progile | início',
+                'projects' : projects,
             }
         }
 
+    def project(self, request):
+        data = None
+
+        try:
+            pk = self.kwargs['pk']
+            project = Project.objects.get(pk=pk)
+        except Exception, e:
+            logger.error(str(e))
+
+            data = {
+                    'leftover' : {
+                        'alert-error' : 'No project found.',
+                    }
+                }
+        else:
+            data = {
+                'template' : {
+                    'project' : project,
+                }
+            }
+
+        return data
+
+    def new_project(self, request):
+        data = None
+        organizations = Organization.objects.all
+
+        if request.method == "POST":
+            try:
+                visibility = request.POST['visibility']
+            except Exception, e:
+                logger.info(str(e))
+
+                visibility = False
+
+            try:
+                name = request.POST['name']
+                organization_name = request.POST['organization_name']
+                description = request.POST['description']
+            except Exception, e:
+                logger.error(str(e))
+
+                data = {
+                        'leftover' : {
+                            'alert-error' : 'Something went wronge :(',
+                        }
+                    }
+            else:
+                if name:
+                    organization = Organization.objects.get_or_none(name=organization_name)
+
+                    try:
+                        project = Project.objects.create(name=name, organization=organization, visibility=visibility, description=description)
+                        user = CustomUser.objects.get(user=request.user)
+                        project_has_user = ProjectHasUser.objects.create(user_id=user, project_id=project, manages=True)
+
+                    except Exception, e:
+                        logger.error(str(e))
+
+                        data = {
+                            'leftover' : {
+                                'alert-error' : 'Project name is already taken.',
+                            }
+                        }
+
+                    data = {
+                        'leftover' : {
+                            'alert-success' : 'Project ' + name + ' succefully created.',
+                            'redirect' : '/projects/',
+                        }
+                    }
+                else:
+                    data = {
+                        'leftover' : {
+                            'alert-error' : 'Project name is mandatory.',
+                        }
+                    }
+                
+        elif request.method == "GET":
+            data = {
+                'template' : {
+                    'organizations' : organizations,
+                }
+            }
+
+        return data
+
+    def home(self, request):
+        data = None
+
+        if request.user.is_authenticated():
+            data = {
+                'leftover' : {
+                    'redirect' : '/projects/',
+                }
+            }
+        else:
+            data = {
+                'template' : {
+                    'title' : 'Progile | Home',
+                }
+            }
+
+        return data
+
+    def boards(self, request):
+
+        return {
+            'template' : {
+                'title' : 'Progile | Home',
+            }
+        }
+
+    def signin(self, request):
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+
+        if first_name and username and email and password:
+            user = None
+
+            try:
+                user = User.objects.create_user(username=username, email=email, password=password)
+                custom_user, created = CustomUser.objects.get_or_create(user=user, first_name=first_name, last_name=last_name)
+            except Exception, e:
+                logger.error(str(e))
+
+            if user:
+                user = authenticate(username=username, password=password)
+
+                if user is not None:
+                    login(request, user)
+                    
+                    data = {
+                        'leftover' : {
+                            'alert-success' : 'Account created succefully!',
+                            'redirect' : '/projects/'
+                        },
+                    }
+                else:
+                    data = {
+                        'leftover' : {
+                            'alert-error' : 'Something went wrong :(',
+                        },
+                    }
+            else:
+                data = {
+                    'leftover' : {
+                        'alert-error' : 'Username/Email already registered. Try again with another username/email please.',
+                    },
+                }
+
+        else:
+            logger.info("Missing required informations!");
+
+            data = {
+                'leftover' : {
+                    'alert-error' : 'Missing required informations.',
+                },
+            }
+
+        return data
+
+    def login(self, request):
+        data = None
+        user = None
+
+        username = request.POST['username']
+        password = request.POST['password']
+        
+        try:
+            user = authenticate(username=username, password=password)
+        except Exception, e:
+            logger.error(str(e))
+
+        if user is not None:
+            login(request, user)
+
+            data = {
+                'leftover' : {
+                    'alert-success' : 'Welcome back :)',
+                    'redirect' : '/projects/'
+                },
+            }
+            
+        else:
+            data = {
+                'leftover' : {
+                    'alert-error' : 'Invalid login/pass. Try again please.',
+                },
+            }
+
+        return data
+
+    def logout(self, request):
+        try:
+            logout(request)
+        except Exception, e:
+            logger.error(str(e))
+
+        return {
+            'leftover' : {
+                'redirect' : '/home/',
+            },
+        }
     def about(self, request):
         abouts = About.objects.all()
         members = Member.objects.all().order_by('name')

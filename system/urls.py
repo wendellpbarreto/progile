@@ -8,7 +8,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-
 from system.core.views import GUI
 
 admin.autodiscover()
@@ -21,7 +20,7 @@ urlpatterns = patterns('',
     url(r'^$', RedirectView.as_view(url='/home/')),
 
     url(r'^(?P<slug>\w+)/$', GUI.as_view(), name='gui',),
-	url(r'^(?P<slug>\w+)/(?P<pk>\d+)$', GUI.as_view(), name='gui',),
+	url(r'^(?P<slug>\w+)/(?P<pk>\w+)$', GUI.as_view(), name='gui',),
 
 )
 
