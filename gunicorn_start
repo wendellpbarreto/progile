@@ -3,8 +3,8 @@
 NAME="progile"                                 		# Name of the application
 DJANGODIR=/var/www/progile/             				# Django project directory
 SOCKFILE=/var/www/progile/run/gunicorn.sock  			# we will communicte using this unix socket
-USER=wendell                                      	  	# the user to run as
-GROUP=wendell                                    		# the group to run as
+USER=root                                      	  	# the user to run as
+GROUP=root                                    		# the group to run as
 NUM_WORKERS=3                                 		# how many worker processes should Gunicorn spawn
 DJANGO_SETTINGS_MODULE=system.settings       		 # which settings file should Django use
 DJANGO_WSGI_MODULE=system.wsgi                		# WSGI module name
