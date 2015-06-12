@@ -12,7 +12,7 @@ DJANGO_WSGI_MODULE=system.wsgi                		# WSGI module name
  
 # Activate the virtual environment
 cd $DJANGODIR
-. /home/wendell/.virtualenvs/progile/bin/activate
+. /root/.virtualenvs/progile/bin/activate
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
  
@@ -22,7 +22,7 @@ test -d $RUNDIR || mkdir -p $RUNDIR
  
 # Start your django gunicorn
 # Programs meant to be run under supervisor should not daemonize themselves
-exec /home/wendell/.virtualenvs/progile/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+exec /root/.virtualenvs/progile/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
   --name $NAME \
   --workers $NUM_WORKERS \
   --user=$USER --group=$GROUP \
