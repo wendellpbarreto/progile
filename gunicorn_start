@@ -12,9 +12,9 @@ DJANGODIR=/var/www/progile/             				# Django project directory
  
 # # Activate the virtual environment
 cd $DJANGODIR
-# . /root/.virtualenvs/progile/bin/activate
-# export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
-# export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+. /root/.virtualenvs/progile/bin/activate
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR:$PYTHONPATH
  
 # # Create the run directory if it doesn't exist
 # RUNDIR=$(dirname $SOCKFILE)
