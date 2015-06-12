@@ -30,6 +30,7 @@
     <!-- fonts -->
     <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ STATIC_URL }}fonts/simple-line-icons/simple-line-icons.css" />
     <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
     <!-- <link rel="stylesheet" href="{{ STATIC_URL }}fonts/icomoon/style.css"> -->
     <!-- stylesheets::vendor -->
@@ -39,10 +40,12 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}vendor/animate/animate.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}vendor/tilteffect/tilteffect.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}vendor/gridster/gridster.min.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}vendor/buttons/css/buttons.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}vendor/pickadate/lib/themes/default.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}vendor/pickadate/lib/themes/default.date.css" />
 
     <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.4.1/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.4.1/css/themes/default.min.css"/>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.4.1/css/themes/semantic.min.css"/>
 
     <!-- stylesheets::main -->
     <link rel="stylesheet" href="{{ STATIC_URL }}styles/main.css">
@@ -60,10 +63,15 @@
     <!-- -  -   -    -     -      -      -       -        -        Footer -->
     {% block footer %} {% endblock %}
     
+    <script src="{{ STATIC_URL }}vendor/sortable/Sortable.js"></script>
+
     <script src="//cdn.jsdelivr.net/alertifyjs/1.4.1/alertify.min.js"></script>
 
     <script src="{{ STATIC_URL }}bower_components/jquery/dist/jquery.min.js"></script>
     <script src="{{ STATIC_URL }}bower_components/foundation/js/foundation.js"></script>
+    <script src="{{ STATIC_URL }}vendor/pickadate/lib/picker.js"></script>
+    <script src="{{ STATIC_URL }}vendor/pickadate/lib/picker.date.js"></script>
+    <script src="{{ STATIC_URL }}vendor/pickadate/lib/legacy.js"></script>
     <script src="{{ STATIC_URL }}vendor/owlcarousel/owl.carousel.min.js"></script>
     <script src="{{ STATIC_URL }}vendor/classie/classie.js"></script>
     <script src="{{ STATIC_URL }}vendor/tilteffect/tilteffect.js"></script>

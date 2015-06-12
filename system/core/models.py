@@ -14,36 +14,15 @@ from django.utils.translation import ugettext_lazy as _
 from sorl.thumbnail import ImageField
 from django.contrib.auth.models import User
 
+from django import template
+
+register = template.Library()
+
 logger = logging.getLogger(__name__)
 
-STATES = (
-    ("AC", "AC"),
-    ("AL", "AL"),
-    ("AP", "AP"),
-    ("AP", "AP"),
-    ("BA", "BA"),
-    ("CE", "CE"),
-    ("DF", "DF"),
-    ("GO", "GO"),
-    ("ES", "ES"),
-    ("MA", "MA"),
-    ("MT", "MT"),
-    ("MS", "MS"),
-    ("MG", "MG"),
-    ("PA", "PA"),
-    ("PB", "PB"),
-    ("PR", "PR"),
-    ("PE", "PE"),
-    ("PI", "PI"),
-    ("RJ", "RJ"),
-    ("RN", "RN"),
-    ("RS", "RS"),
-    ("RO", "RO"),
-    ("RR", "RR"),
-    ("SP", "SP"),
-    ("SC", "SC"),
-    ("SE", "SE"),
-    ("TO", "TO"),
+STATUS = (
+    ("open", "open"),
+    ("closed", "closed"),
 )
 
 class GetOrNoneManager(models.Manager):
@@ -53,16 +32,16 @@ class GetOrNoneManager(models.Manager):
         except self.model.DoesNotExist:
             return None
 
-class Organization(models.Model):
+class Team(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=32, unique=True, blank=False)
 
     objects = GetOrNoneManager()
 
     class Meta:
-        verbose_name = "Organization"
-        verbose_name_plural = "Organizations"
-        db_table = "organization"
+        verbose_name = "Team"
+        verbose_name_plural = "Teams"
+        db_table = "team"
 
     def __unicode__(self):
         return u"%s" % (self.name.lower())
@@ -81,43 +60,12 @@ class Speciality(models.Model):
     def __unicode__(self):
         return u"%s" % (self.name.lower())
 
-class CustomUser(models.Model):
-    id = models.AutoField(primary_key=True)
-    user = models.OneToOneField(User, related_name='custom_user')
-    first_name = models.CharField(max_length=64)
-    last_name = models.CharField(max_length=128, blank=True)
-    bio = models.CharField(max_length=512, blank=True)
-
-    organization = models.ManyToManyField(Organization, through='UserHasOrganization')
-    speciality = models.ManyToManyField(Speciality, through='UserHasSpeciality')
-
-    objects = GetOrNoneManager()
-
-    class Meta:
-        verbose_name = "User"
-        verbose_name_plural = "Users"
-        db_table = "user"
-
-    def __unicode__(self):
-        return u"%s" % (self.user.username.lower())
-
-class UserHasOrganization(models.Model):
-    user_id = models.ForeignKey(CustomUser, db_column='user_id')
-    organization_id = models.ForeignKey(Organization, db_column='organization_id')
-    manages = models.BooleanField(default=False)
-
-class UserHasSpeciality(models.Model):
-    user_id = models.ForeignKey(CustomUser, db_column='user_id')
-    speciality_id = models.ForeignKey(Speciality, db_column='speciality_id')
-
 class Project(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=64)
-    organization = models.ForeignKey(Organization, null=True)
-    visibility = models.BooleanField(default=False)
     description = models.TextField(max_length=512, blank=True)
-
-    user = models.ManyToManyField(CustomUser, through='ProjectHasUser')
+    visibility = models.BooleanField(default=False)
+    team_id = models.ForeignKey(Team, null=True, db_column='team_id')
 
     objects = GetOrNoneManager()
 
@@ -129,11 +77,6 @@ class Project(models.Model):
     def __unicode__(self):
         return u"%s" % (self.name.lower())
 
-class ProjectHasUser(models.Model):
-    user_id = models.ForeignKey(CustomUser, db_column='user_id')
-    project_id = models.ForeignKey(Project, db_column='project_id')
-    manages = models.BooleanField(default=False)
-
 class Sprint(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=124)
@@ -141,7 +84,7 @@ class Sprint(models.Model):
     order = models.IntegerField()
     start_date = models.DateField()
     end_date = models.DateField()
-    project = models.ForeignKey(Project)
+    project_id = models.ForeignKey(Project, db_column='project_id', related_name='sprints')
 
     objects = GetOrNoneManager()
 
@@ -157,11 +100,15 @@ class Board(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=32)
     order = models.IntegerField()
-    project = models.ForeignKey(Project)
+    project_id = models.ForeignKey(Project, db_column='project_id', related_name='boards')
     
     objects = GetOrNoneManager()
 
+    def get_tasks_without_sprint(self):
+        return self.tasks.filter(sprint_id=None)
+
     class Meta:
+        ordering = ['order', 'title']
         verbose_name = "Board"
         verbose_name_plural = "Boards"
         db_table = "board"
@@ -186,17 +133,20 @@ class Tag(models.Model):
 
 class Task(models.Model):
     id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=124)
+    title = models.CharField(max_length=512)
     description = models.CharField(max_length=512)
+    order = models.IntegerField(default=0)
     points = models.IntegerField()
-    sprint_id = models.ForeignKey(Sprint, null=True)
-    board_id = models.ForeignKey(Board)
+    status = models.CharField(choices=STATUS, max_length=12)
+    sprint_id = models.ForeignKey(Sprint, null=True, db_column='sprint_id', related_name='tasks')
+    board_id = models.ForeignKey(Board, db_column='board_id', related_name='tasks')
 
     task = models.ManyToManyField(Tag, through='TaskHasTag')
 
     objects = GetOrNoneManager()
 
     class Meta: 
+        ordering = ['order', 'title']
         verbose_name = "Task"
         verbose_name_plural = "Tasks"
         db_table = "task"
@@ -208,6 +158,72 @@ class TaskHasTag(models.Model):
     task_id = models.ForeignKey(Task, db_column='task_id')
     tag_id = models.ForeignKey(Tag, db_column='tag_id')
 
+    class Meta:
+        db_table = "task_has_tag"
 
+class Comment(models.Model):
+    id = models.AutoField(primary_key=True)
+    text = models.CharField(max_length=1024)
+    task_id = models.ForeignKey(Task, null=True, db_column='task_id')
 
+    class Meta: 
+        verbose_name = "Comment"
+        verbose_name_plural = "Comments"
+        db_table = "comment"
+
+    def __unicode__(self):
+        return u"%s" % (self.id)
+
+class CustomUser(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, related_name='custom_user')
+    first_name = models.CharField(max_length=64)
+    last_name = models.CharField(max_length=128, blank=True)
+    bio = models.CharField(max_length=512, blank=True)
+
+    team = models.ManyToManyField(Team, through='UserHasTeam')
+    speciality = models.ManyToManyField(Speciality, through='UserHasSpeciality')
+    project = models.ManyToManyField(Project, through='UserHasProject')
+    task = models.ManyToManyField(Task, through='UserHasTask')
+
+    objects = GetOrNoneManager()
+
+    class Meta:
+        verbose_name = "User"
+        verbose_name_plural = "Users"
+        db_table = "custom_user"
+
+    def __unicode__(self):
+        return u"%s" % (self.user.username.lower())
+
+class UserHasTask(models.Model):
+    user_id = models.ForeignKey(CustomUser, db_column='user_id')
+    task_id = models.ForeignKey(Task, db_column='task_id')
+    onws = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = "user_has_task"
+
+class UserHasTeam(models.Model):
+    user_id = models.ForeignKey(CustomUser, db_column='user_id')
+    team_id = models.ForeignKey(Team, db_column='team_id')
+    manages = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = "user_has_team"
+
+class UserHasSpeciality(models.Model):
+    user_id = models.ForeignKey(CustomUser, db_column='user_id')
+    speciality_id = models.ForeignKey(Speciality, db_column='speciality_id')
+
+    class Meta:
+        db_table = "user_has_speciality"
+
+class UserHasProject(models.Model):
+    user_id = models.ForeignKey(CustomUser, db_column='user_id')
+    project_id = models.ForeignKey(Project, db_column='project_id')
+    manages = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = "user_has_project"
 

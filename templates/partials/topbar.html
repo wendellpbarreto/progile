@@ -1,6 +1,7 @@
 <div id="topbar">
+	<h1 class="topbar__logo">Progile</h1>
 	<nav class="topbar__nav right">
-		{{ request.user.username }}
+		{{ request.user.custom_user.first_name }}
 		<a href="/logout/" data-ajax="false" class="topbar__nav-anchor">logout</a>
 	</nav>
 </div>

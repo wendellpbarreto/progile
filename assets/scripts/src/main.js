@@ -24,15 +24,22 @@
 
 // Foundation JavaScript
 // Documentation can be found at: http://foundation.zurb.com/docs
-$(document).foundation({
- 
-});
+$(document).foundation({});
 
 /*  [GLOBAL] Functions
 *******************************************************************/
   
   String.prototype.capitalizeFirstLetter = function() {
       return this.charAt(0).toUpperCase() + this.slice(1);
+  }
+
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 
   function lock_screen(){
@@ -270,7 +277,45 @@ $(document).foundation({
 
     return false;
   });
+
   $('#visibility').change(function(){
        cb = $(this);
        cb.val(cb.prop('checked').toString().capitalizeFirstLetter());
    });  
+
+  $(document).ready(function(){
+    $('#page').css('min-height', $('body').height() - 100);
+
+    $('.project-box').each(function(){
+      // $(this).css('background-color', getRandomColor());
+    });
+
+    $('.datepicker').pickadate({
+        formatSubmit: 'yyyy/mm/dd',
+    });
+  });
+
+  $( window ).resize(function() {
+    $('#page').css('min-height', $('body').height() - 100);
+  });
+
+  $(document).on('click', '.hero__meta-anchor-login', function() {
+    $('.hero__forms-login form').stop().animate({
+        width: "100%",
+        opacity: 1,
+      }, 1000);
+    $('.hero__forms-signup form').stop().animate({
+        width: "0",
+        opacity: 0,
+      }, 1000);
+  });
+  $(document).on('click', '.hero__meta-anchor-signup', function() {
+    $('.hero__forms-signup form').stop().animate({
+        width: "100%",
+        opacity: 1,
+      }, 1000);
+    $('.hero__forms-login form').stop().animate({
+        width: "0",
+        opacity: 1,
+      }, 1000);
+  });

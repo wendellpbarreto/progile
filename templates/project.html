@@ -10,9 +10,30 @@
 
 {% block container %}
 	<div id="page">
-    	<p>{{ project.name }}</p>
+		<a class="page__back-button" href="/projects/"><i class="icon-action-undo"></i></a>
 
-		<a href="/projects/">back</a>
+		<header class="page__header">
+			<h2 class="page__header-title">{{ project.name }}</h2>
+			<h5 class="page__header-subtitle">dashboard</h5>
+		</header>
+		
+		<div class="row collapse">
+			<div class="small-20 medium-8 large-6 columns">
+				<section class="project__buttons">
+					<a href="/boards/{{ project.id }}" class="project__button-boards">boards <i class="icon-grid"></i></a>
+					<a href="/sprints/{{ project.id }}" class="project__button-sprints">sprints <i class="icon-hourglass"></i></a>
+				</section>
+				<article class="project__description">
+					<h5 class="project__description-title">project description:</h5>
+					<p>
+						{{ project.description }}
+					</p>
+				</article>
+			</div>
+			<div class="small-20 meedium-12 large-14 columns">
+				
+			</div>
+		</div>
 	</div>
 {% endblock %}
 

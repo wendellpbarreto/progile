@@ -3,6 +3,7 @@
 
 import logging
 import operator
+import datetime
 
 from django.shortcuts import render
 from itertools import chain
@@ -14,7 +15,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
-
 logger = logging.getLogger(__name__)
 
 class GUI(GenericView):
@@ -22,21 +22,49 @@ class GUI(GenericView):
     def __init__(self):
         pass
 
-    def projects(self, request):
-        projects = Project.objects.filter(user=request.user.custom_user).order_by('name')
+    def new_sprint(self, request):
+        data = None
 
-        return {
-            'template' : {
-                'projects' : projects,
+        print request.POST
+        if request.method == "POST":
+            try:
+                project_id = request.POST['project_id']
+                project_id = Project.objects.raw('SELECT * FROM project WHERE id = %s', [project_id])[0].id
+
+                title = request.POST['title']
+                start_date = datetime.datetime.strptime(request.POST['start_date_submit'], "%Y/%m/%d").date()
+                end_date = datetime.datetime.strptime(request.POST['end_date_submit'], "%Y/%m/%d").date()
+                description = request.POST['description']
+                order = request.POST['order']
+                
+       
+                sprint = Sprint.objects.raw('INSERT INTO "sprint" ("title", "start_date", "end_date", "description", "order", "project_id") VALUES (%s, %s, %s, %s, %s, %s) RETURNING sprint.id', [title, start_date, end_date, description, order, project_id])[0]
+            except Exception, e:
+                logger.error(str(e))
+
+                data = {
+                    'leftover' : {
+                        'alert-error' : 'Cannot create board.',
+                    }
+                }
+
+            data = {
+                'leftover' : {
+                    'alert-success' : 'Board ' + title + ' succefully created.',
+                    'redirect' : '/sprints/' + str(project_id),
+                }
             }
-        }
+            
 
-    def project(self, request):
+        return data
+
+    def sprints(self, request):
         data = None
 
         try:
             pk = self.kwargs['pk']
-            project = Project.objects.get(pk=pk)
+            project = Project.objects.raw('SELECT * FROM project WHERE id = %s', [pk])[0]
+            boards = Board.objects.raw('SELECT * FROM board WHERE project_id = %s', [project.id])
         except Exception, e:
             logger.error(str(e))
 
@@ -49,6 +77,184 @@ class GUI(GenericView):
             data = {
                 'template' : {
                     'project' : project,
+                    'boards' : boards,
+                }
+            }
+
+        return data
+
+    def new_task(self, request):
+        data = None
+        logger.info(request.POST)
+
+        try:
+            sprint_id = request.POST['sprint_id']
+            sprint_id = Sprint.objects.raw('SELECT * FROM sprint WHERE id = %s', [sprint_id])[0].id
+        except Exception, e:
+            logger.warning(str(e))
+
+            sprint_id = None
+
+        try:
+            title = request.POST['title']
+            description = request.POST['description']
+            points = request.POST['points']
+            order = request.POST['order']
+            status = request.POST['status']
+            from_page = request.POST['from_page']
+
+            board_id = request.POST['board_id']
+            project_id = request.POST['project_id']
+        except Exception, e:
+            logger.error(str(e))
+
+            data = {
+                'leftover' : {
+                    'alert-error' : 'Something went wrong :(',
+                }
+            }
+        else:
+            if request.method == "POST" and title:
+                try:
+                    task = Task.objects.raw('INSERT INTO "task" ("title", "description", "points", "order", "status", "sprint_id", "board_id") VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING task.id', [title, description, points, int(order), status, sprint_id, int(board_id)])[0]
+                except Exception, e:
+                    logger.error(str(e))
+
+                    data = {
+                        'leftover' : {
+                            'alert-error' : 'Cannot create task.',
+                        }
+                    }
+
+                data = {
+                    'leftover' : {
+                        'alert-success' : 'Task ' + title + ' succefully created.',
+                        'redirect' : '/' + from_page + '/' + project_id,
+                    }
+                }
+            else:
+                data = {
+                    'leftover' : {
+                        'alert-error' : 'Task title is mandatory.',
+                    }
+                }
+
+        return data
+             
+    def update_task(self, request):
+        data = None
+
+        if request.method == 'GET':
+            print request.GET
+
+            try:
+                task_id = request.GET['task_id']
+                order = request.GET['order']
+                Task.objects.filter(id=task_id).update(order=order)
+            except Exception, e:
+                logger.error(str(e))
+
+                data = {
+                        'leftover' : {
+                            'alert-error' : 'Something went wrong :(',
+                        }
+                    }
+
+            try:
+                task_id = request.GET['task_id']
+                board_id = request.GET['board_id']
+                Task.objects.filter(id=task_id).update(board_id=board_id)
+            except Exception, e:
+                logger.error(str(e))
+
+                data = {
+                        'leftover' : {
+                            'alert-error' : 'Something went wrong :(',
+                        }
+                    }
+
+            try:
+                order = request.GET['order']
+            except Exception, e:
+                logger.error(str(e))
+
+                order = 0
+
+            try:
+                task_id = request.GET['task_id']
+                sprint_id = request.GET['sprint_id'] if request.GET['sprint_id'] != '0' else None
+                Task.objects.filter(id=task_id).update(sprint_id=sprint_id, order=order)
+            except Exception, e:
+                logger.error(str(e))
+
+                data = {
+                        'leftover' : {
+                            'alert-error' : 'Something went wrong :(',
+                        }
+                    }
+
+        elif request.method == 'POST':
+            try:
+                task_id = request.POST['task_id']
+                title = request.POST['title']
+                description = request.POST['description']
+                points = request.POST['points']
+                order = request.POST['order']
+                status = request.POST['status']
+
+                from_page = request.POST['from_page']
+
+                board_id = request.POST['board_id']
+                project_id = request.POST['project_id']
+            except Exception, e:
+                logger.error(str(e))
+
+                data = {
+                    'leftover' : {
+                        'alert-error' : 'Something went wrong :(',
+                    }
+                }
+            else:
+                task = Task.objects.raw('UPDATE "task" SET "title" = %s, "description" = %s, "points" = %s, "order" = %s, "status" = %s, "board_id" = %s WHERE "id" = %s RETURNING task.id', [title, description, points, order, status, int(board_id), task_id])[0]
+
+                data = {
+                    'leftover' : {
+                        'alert-success' : 'Task ' + title + ' succefully created.',
+                        'redirect' : '/' + from_page + '/' + project_id,
+                    }
+                }
+
+        return data
+
+    def projects(self, request):
+        projects = Project.objects.raw('SELECT * FROM project JOIN user_has_project ON project.id = user_has_project.project_id WHERE user_has_project.user_id = %s', [request.user.custom_user.id])
+
+        return {
+            'template' : {
+                'projects' : projects,
+            }
+        }
+
+    def project(self, request):
+        data = None
+
+        try:
+            pk = self.kwargs['pk']
+            project = Project.objects.raw('SELECT * FROM project WHERE id = %s', [pk])[0]
+            boards = Board.objects.raw('SELECT * FROM board WHERE project_id = %s', [project.id])
+        except Exception, e:
+            logger.error(str(e))
+
+            data = {
+                    'leftover' : {
+                        'alert-error' : 'No project found.',
+                    }
+                }
+        else:
+            data = {
+                'template' : {
+                    'project' : project,
+                    'boards' : boards,
                 }
             }
 
@@ -56,7 +262,7 @@ class GUI(GenericView):
 
     def new_project(self, request):
         data = None
-        organizations = Organization.objects.all
+        teams = Team.objects.raw('SELECT * FROM team')
 
         if request.method == "POST":
             try:
@@ -68,26 +274,34 @@ class GUI(GenericView):
 
             try:
                 name = request.POST['name']
-                organization_name = request.POST['organization_name']
+                team_id = request.POST['team_id']
                 description = request.POST['description']
             except Exception, e:
                 logger.error(str(e))
 
                 data = {
-                        'leftover' : {
-                            'alert-error' : 'Something went wronge :(',
-                        }
+                    'leftover' : {
+                        'alert-error' : 'Something went wrong :(',
                     }
+                }
             else:
                 if name:
-                    organization = Organization.objects.get_or_none(name=organization_name)
+                    try:
+                        team = Team.objects.raw('SELECT * FROM team WHERE id = %s', [team_id])[0].id
+                    except Exception, e:
+                        logger.info(str(e))
+
+                        team = None
 
                     try:
-                        project = Project.objects.create(name=name, organization=organization, visibility=visibility, description=description)
-                        user = CustomUser.objects.get(user=request.user)
-                        project_has_user = ProjectHasUser.objects.create(user_id=user, project_id=project, manages=True)
-
+                        project_id = Project.objects.raw('INSERT INTO project (name, team_id, visibility, description) VALUES (%s, %s, %s, %s) RETURNING project.id', [name, team, visibility, description])[0].id
+                        user_id = CustomUser.objects.raw('SELECT * FROM custom_user WHERE user_id = %s', [request.user.id])[0].id
+                        UserHasProject.objects.raw('INSERT INTO user_has_project (user_id, project_id, manages) VALUES (%s, %s, true) RETURNING user_has_project.id', [user_id, project_id])[0]
+                        board1 = Board.objects.raw('INSERT INTO "board" ("title", "order", "project_id") VALUES (%s, %s, %s) RETURNING board.id', ["To Do", 1, project_id])[0]
+                        board2 = Board.objects.raw('INSERT INTO "board" ("title", "order", "project_id") VALUES (%s, %s, %s) RETURNING board.id', ["Doing", 2, project_id])[0]
+                        board3 = Board.objects.raw('INSERT INTO "board" ("title", "order", "project_id") VALUES (%s, %s, %s) RETURNING board.id', ["Done", 3, project_id])[0]
                     except Exception, e:
+                        logger.error('- ' * 20)
                         logger.error(str(e))
 
                         data = {
@@ -108,13 +322,127 @@ class GUI(GenericView):
                             'alert-error' : 'Project name is mandatory.',
                         }
                     }
-                
+
         elif request.method == "GET":
             data = {
                 'template' : {
-                    'organizations' : organizations,
+                    'teams' : teams,
                 }
             }
+
+        return data
+
+    def new_board(self, request):
+        data = None
+
+        try:
+            project_id = request.POST['project_id']
+            title = request.POST['title']
+
+            project_id = Project.objects.raw('SELECT * FROM project WHERE id = %s', [project_id])[0].id
+        except Exception, e:
+            logger.error(str(e))
+
+            data = {
+                'leftover' : {
+                    'alert-error' : 'Something went wrong :(',
+                }
+            }
+        else:
+            if request.method == "POST" and title:
+                try:
+                    boards = Board.objects.raw('SELECT * FROM board WHERE project_id = %s', [project_id])
+                    boards_quantity = sum(1 for board in boards)
+                    board = Board.objects.raw('INSERT INTO "board" ("title", "order", "project_id") VALUES (%s, %s, %s) RETURNING board.id', [title, boards_quantity + 1, project_id])[0]
+                except Exception, e:
+                    logger.error(str(e))
+
+                    data = {
+                        'leftover' : {
+                            'alert-error' : 'Cannot create board.',
+                        }
+                    }
+
+                data = {
+                    'leftover' : {
+                        'alert-success' : 'Board ' + title + ' succefully created.',
+                        'redirect' : '/boards/' + str(project_id),
+                    }
+                }
+            else:
+                data = {
+                    'leftover' : {
+                        'alert-error' : 'Board title is mandatory.',
+                    }
+                }
+
+        return data
+    
+    def update_board(self, request):
+        data = None
+
+        if request.method == 'GET':
+            try:
+                board_id = request.GET['board_id']
+                order = request.GET['order']
+                Board.objects.filter(id=board_id).update(order=order)
+            except Exception, e:
+                logger.error(str(e))
+
+                data = {
+                        'leftover' : {
+                            'alert-error' : 'Something went wrong :(',
+                        }
+                    }
+        elif request.method == 'POST':
+            try:
+                sprint_id = request.POST['sprint_id']
+                sprint_id = Sprint.objects.raw('SELECT * FROM sprint WHERE id = %s', [sprint_id])[0].id
+            except Exception, e:
+                logger.warning(str(e))
+
+                sprint_id = None
+
+            try:
+                title = request.POST['title']
+                description = request.POST['description']
+                points = request.POST['points']
+
+                board_id = request.POST['board_id']
+                project_id = request.POST['project_id']
+            except Exception, e:
+                logger.error(str(e))
+
+                data = {
+                    'leftover' : {
+                        'alert-error' : 'Something went wrong :(',
+                    }
+                }
+            else:
+                if request.method == "POST" and title:
+                    try:
+                        task = Task.objects.raw('INSERT INTO "task" ("title", "description", "points", "sprint_id", "board_id") VALUES (%s, %s, %s, %s, %s) RETURNING task.id', [title, description, points, int(sprint_id), int(board_id)])[0]
+                    except Exception, e:
+                        logger.error(str(e))
+
+                        data = {
+                            'leftover' : {
+                                'alert-error' : 'Cannot create task.',
+                            }
+                        }
+
+                    data = {
+                        'leftover' : {
+                            'alert-success' : 'Task ' + title + ' succefully created.',
+                            'redirect' : '/boards/' + project_id,
+                        }
+                    }
+                else:
+                    data = {
+                        'leftover' : {
+                            'alert-error' : 'Task title is mandatory.',
+                        }
+                    }
 
         return data
 
@@ -137,12 +465,29 @@ class GUI(GenericView):
         return data
 
     def boards(self, request):
+        data = None
 
-        return {
-            'template' : {
-                'title' : 'Progile | Home',
+        try:
+            pk = self.kwargs['pk']
+            project = Project.objects.raw('SELECT * FROM project WHERE id = %s', [pk])[0]
+            boards = Board.objects.raw('SELECT * FROM board WHERE project_id = %s', [project.id])
+        except Exception, e:
+            logger.error(str(e))
+
+            data = {
+                    'leftover' : {
+                        'alert-error' : 'No project found.',
+                    }
+                }
+        else:
+            data = {
+                'template' : {
+                    'project' : project,
+                    'boards' : boards,
+                }
             }
-        }
+
+        return data
 
     def signin(self, request):
         first_name = request.POST['first_name']
@@ -165,7 +510,7 @@ class GUI(GenericView):
 
                 if user is not None:
                     login(request, user)
-                    
+
                     data = {
                         'leftover' : {
                             'alert-success' : 'Account created succefully!',
@@ -202,7 +547,7 @@ class GUI(GenericView):
 
         username = request.POST['username']
         password = request.POST['password']
-        
+
         try:
             user = authenticate(username=username, password=password)
         except Exception, e:
@@ -217,7 +562,7 @@ class GUI(GenericView):
                     'redirect' : '/projects/'
                 },
             }
-            
+
         else:
             data = {
                 'leftover' : {
@@ -238,321 +583,3 @@ class GUI(GenericView):
                 'redirect' : '/home/',
             },
         }
-    def about(self, request):
-        abouts = About.objects.all()
-        members = Member.objects.all().order_by('name')
-        addresses = Address.objects.all()
-        contacts = Contact.objects.all()
-
-        return {
-            'template' : {
-                'title' : 'progile | início',
-                'disciplines' : self.disciplines,
-                'editorials' : self.editorials,
-                'populars' : self.populars,
-                'recents' : self.recents,
-                'commenteds' : self.commenteds,
-                'social_networks' : self.social_networks,
-                'abouts' : abouts,
-                'members' : members,
-                'addresses' : addresses,
-                'contacts' : contacts,
-            }
-        }
-
-    def posts(self, request):
-        notices, photogalleries, video_libraries = None, None, None
-        discipline, curricular_practice, editorial = None, None, None
-
-
-        try:
-            discipline = Discipline.objects.get(pk=request.GET['discipline'])
-        except Exception, e:
-            discipline = None
-            logger.error(str(e))
-        else:
-            notices = Notice.objects.filter(active=True, discipline=discipline).order_by('-date')
-            photogalleries = Photogallery.objects.filter(active=True, discipline=discipline).order_by('-date')
-            video_libraries = VideoLibrary.objects.filter(active=True, discipline=discipline).order_by('-date')
-
-
-        try:
-            curricular_practice = CurricularPractice.objects.get(pk=request.GET['curricular_practice'])
-        except Exception, e:
-            curricular_practice = None
-            logger.error(str(e))
-        else:
-            if notices and photogalleries and video_libraries:
-                notices = notices.filter(curricular_practice=curricular_practice).order_by('-date')
-                photogalleries = photogalleries.filter(curricular_practice=curricular_practice).order_by('-date')
-                video_libraries = video_libraries.filter(curricular_practice=curricular_practice).order_by('-date')
-            else:
-                notices = Notice.objects.filter(active=True, curricular_practice=curricular_practice).order_by('-date')
-                photogalleries = Photogallery.objects.filter(active=True, curricular_practice=curricular_practice).order_by('-date')
-                video_libraries = VideoLibrary.objects.filter(active=True, curricular_practice=curricular_practice).order_by('-date')
-
-
-        try:
-            editorial = Editorial.objects.get(pk=request.GET['editorial'])
-        except Exception, e:
-            editorial = None
-            logger.error(str(e))
-        else:
-            if notices and photogalleries and video_libraries:
-                notices = notices.filter(editorial=editorial).order_by('-date')
-                photogalleries = photogalleries.filter(editorial=editorial).order_by('-date')
-                video_libraries = video_libraries.filter(editorial=editorial).order_by('-date')
-            else:
-                notices = Notice.objects.filter(active=True, editorial=editorial).order_by('-date')
-                photogalleries = Photogallery.objects.filter(active=True, editorial=editorial).order_by('-date')
-                video_libraries = VideoLibrary.objects.filter(active=True, editorial=editorial).order_by('-date')
-
-
-        try:
-            author = Author.objects.get(pk=request.GET['author'])
-        except Exception, e:
-            author = None
-            logger.error(str(e))
-        else:
-            if notices and photogalleries and video_libraries:
-                notices = notices.filter(author=author).order_by('-date')
-                photogalleries = photogalleries.filter(author=author).order_by('-date')
-                video_libraries = video_libraries.filter(author=author).order_by('-date')
-            else:
-                notices = Notice.objects.filter(active=True, author=author).order_by('-date')
-                photogalleries = Photogallery.objects.filter(active=True, author=author).order_by('-date')
-                video_libraries = VideoLibrary.objects.filter(active=True, author=author).order_by('-date')
-
-
-        try:
-            keywords = request.GET['keywords'].split()
-        except Exception, e:
-            keywords = None
-            logger.error(str(e))
-        else:
-            if keywords:
-                if notices and photogalleries and video_libraries:
-                    notices = notices.filter(reduce(lambda x, y: x | y, [Q(title__icontains=unicode(keyword)) for keyword in keywords]))
-                    photogalleries = photogalleries.filter(reduce(lambda x, y: x | y, [Q(title__icontains=unicode(keyword)) for keyword in keywords]))
-                    video_libraries = video_libraries.filter(reduce(lambda x, y: x | y, [Q(title__icontains=unicode(keyword)) for keyword in keywords]))
-                else:
-                    notices = Notice.objects.filter(reduce(lambda x, y: x | y, [Q(title__icontains=unicode(keyword)) for keyword in keywords]), active=True).order_by('-date')
-                    photogalleries = Photogallery.objects.filter(reduce(lambda x, y: x | y, [Q(title__icontains=unicode(keyword)) for keyword in keywords]), active=True).order_by('-date')
-                    video_libraries = VideoLibrary.objects.filter(reduce(lambda x, y: x | y, [Q(title__icontains=unicode(keyword)) for keyword in keywords]), active=True).order_by('-date')
-            elif (not discipline) and (not curricular_practice) and (not editorial) and (not author):
-                notices = Notice.objects.filter(active=True).order_by('-date')
-                photogalleries = Photogallery.objects.filter(active=True).order_by('-date')
-                video_libraries = VideoLibrary.objects.filter(active=True).order_by('-date')
-        finally:
-            if (not discipline) and (not curricular_practice) and (not editorial) and (not author):
-                notices = Notice.objects.filter(active=True).order_by('-date')
-                photogalleries = Photogallery.objects.filter(active=True).order_by('-date')
-                video_libraries = VideoLibrary.objects.filter(active=True).order_by('-date')
-
-        posts = list(chain(notices, photogalleries, video_libraries))
-        posts = sorted(posts, key=operator.attrgetter('date'), reverse=True)
-
-        try:
-            page = int(request.GET['page'])
-        except:
-            page = 1
-        finally:
-            posts = self.paginate(obj=posts, page=page, num_per_page=5)
-
-        return {
-            'template' : {
-                'title' : 'progile | início',
-                'disciplines' : self.disciplines,
-                'editorials' : self.editorials,
-                'populars' : self.populars,
-                'recents' : self.recents,
-                'commenteds' : self.commenteds,
-                'social_networks' : self.social_networks,
-                'posts' : posts,
-                'editorial' : editorial,
-                'author' : author,
-            }
-        }
-
-    def notices(self, request):
-        data = None
-        notices = Notice.objects.filter(active=True).order_by('-date')
-
-        data = {
-            'template' : {
-                'title' : 'progile | notícias',
-                'disciplines' : self.disciplines,
-                'editorials' : self.editorials,
-                'populars' : self.populars,
-                'recents' : self.recents,
-                'commenteds' : self.commenteds,
-                'social_networks' : self.social_networks,
-                'notices' : notices,
-            }
-        }
-
-        return data
-
-    def notice(self, request):
-        data = None
-
-        try:
-            pk = self.kwargs['pk']
-            notice = Notice.objects.get(pk=pk)
-            notice.views+=1
-            notice.save()
-        except Exception, e:
-            logger.error(str(e))
-        else:
-
-            data =  {
-                'template' : {
-                    'title' : 'progile | notícia',
-                    'disciplines' : self.disciplines,
-                    'editorials' : self.editorials,
-                    'populars' : self.populars,
-                    'recents' : self.recents,
-                    'commenteds' : self.commenteds,
-                    'social_networks' : self.social_networks,
-                    'notice' : notice,
-                }
-            }
-        finally:
-            return data
-
-    def photogalleries(self, request):
-        data = None
-        photogalleries = Photogallery.objects.filter(active=True).order_by('-date')
-
-        data = {
-            'template' : {
-                'title' : 'progile | fotogalerias',
-                'disciplines' : self.disciplines,
-                'editorials' : self.editorials,
-                'populars' : self.populars,
-                'recents' : self.recents,
-                'commenteds' : self.commenteds,
-                'social_networks' : self.social_networks,
-                'photogalleries' : photogalleries,
-            }
-        }
-        return data
-
-    def photogallery(self, request):
-        data = None
-
-        try:
-            pk = self.kwargs['pk']
-            photogallery = Photogallery.objects.get(pk=pk)
-            photogallery.views+=1
-            photogallery.save()
-        except Exception, e:
-            logger.error(str(e))
-        else:
-
-            data =  {
-                'template' : {
-                    'title' : 'progile | fotogaleria',
-                    'disciplines' : self.disciplines,
-                    'editorials' : self.editorials,
-                    'populars' : self.populars,
-                    'recents' : self.recents,
-                    'commenteds' : self.commenteds,
-                    'social_networks' : self.social_networks,
-                    'photogallery' : photogallery,
-                }
-            }
-        finally:
-            return data
-
-    def video_libraries(self, request):
-        data = None
-        video_libraries = VideoLibrary.objects.filter(active=True).order_by('-date')
-
-        data = {
-            'template' : {
-                'title' : 'progile | videotecas',
-                'disciplines' : self.disciplines,
-                'editorials' : self.editorials,
-                'populars' : self.populars,
-                'recents' : self.recents,
-                'commenteds' : self.commenteds,
-                'social_networks' : self.social_networks,
-                'video_libraries' : video_libraries,
-            }
-        }
-
-        return data
-
-    def video_library(self, request):
-        data = None
-
-        try:
-            pk = self.kwargs['pk']
-            video_library = VideoLibrary.objects.get(pk=pk)
-            video_library.views+=1
-            video_library.save()
-        except Exception, e:
-            logger.error(str(e))
-        else:
-
-            data =  {
-                'template' : {
-                    'title' : 'progile | videoteca',
-                    'disciplines' : self.disciplines,
-                    'editorials' : self.editorials,
-                    'populars' : self.populars,
-                    'recents' : self.recents,
-                    'commenteds' : self.commenteds,
-                    'social_networks' : self.social_networks,
-                    'video_library' : video_library,
-                }
-            }
-        finally:
-            return data
-
-    def events(self, request):
-        data = None
-        events = Event.objects.filter(active=True).order_by('-date')
-
-        data = {
-            'template' : {
-                'title' : 'progile | eventos',
-                'disciplines' : self.disciplines,
-                'editorials' : self.editorials,
-                'populars' : self.populars,
-                'recents' : self.recents,
-                'commenteds' : self.commenteds,
-                'social_networks' : self.social_networks,
-                'events' : events,
-            }
-        }
-
-        return data
-
-    def event(self, request):
-        data = None
-
-        try:
-            pk = self.kwargs['pk']
-            event = Event.objects.get(pk=pk)
-            event.views+=1
-            event.save()
-        except Exception, e:
-            logger.error(str(e))
-        else:
-
-            data =  {
-                'template' : {
-                    'title' : 'progile | videoteca',
-                    'disciplines' : self.disciplines,
-                    'editorials' : self.editorials,
-                    'populars' : self.populars,
-                    'recents' : self.recents,
-                    'commenteds' : self.commenteds,
-                    'social_networks' : self.social_networks,
-                    'event' : event,
-                }
-            }
-        finally:
-            return data

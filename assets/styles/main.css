@@ -37,11 +37,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -96,7 +96,7 @@ select {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 81.25rem; }
+  max-width: 312.5rem; }
   .row:before, .row:after {
     content: " ";
     display: table; }
@@ -1302,11 +1302,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -1372,7 +1372,7 @@ select {
       color: #222222;
       padding: 1rem;
       display: block;
-      font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+      font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 1rem; }
       .accordion .accordion-navigation > a:hover, .accordion dd > a:hover {
         background: #e3e3e3; }
@@ -1422,11 +1422,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -1573,11 +1573,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -1938,11 +1938,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -2084,11 +2084,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -2176,11 +2176,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -2233,7 +2233,7 @@ button, .button {
   border-style: solid;
   border-width: 0px;
   cursor: pointer;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: normal;
   line-height: normal;
   margin: 0 0 1.25rem;
@@ -2928,11 +2928,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -2985,7 +2985,7 @@ button, .button {
   border-style: solid;
   border-width: 0px;
   cursor: pointer;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: normal;
   line-height: normal;
   margin: 0 0 1.25rem;
@@ -3225,11 +3225,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -3481,11 +3481,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -3804,11 +3804,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -3941,11 +3941,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -4051,11 +4051,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -4143,11 +4143,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -4200,7 +4200,7 @@ button, .button {
   border-style: solid;
   border-width: 0px;
   cursor: pointer;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: normal;
   line-height: normal;
   margin: 0 0 1.25rem;
@@ -4709,7 +4709,7 @@ select {
   border: 1px solid #cccccc;
   padding: 0.5rem;
   font-size: 0.875rem;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: rgba(0, 0, 0, 0.75);
   line-height: normal;
   -webkit-border-radius: 0;
@@ -4853,11 +4853,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -5069,11 +5069,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -5176,11 +5176,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -5424,11 +5424,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -5530,11 +5530,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -5585,7 +5585,7 @@ select {
 
 .label {
   font-weight: normal;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-align: center;
   text-decoration: none;
   line-height: 1;
@@ -5660,11 +5660,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -5764,11 +5764,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -6109,11 +6109,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -6250,11 +6250,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -6388,11 +6388,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -6456,7 +6456,7 @@ select {
     color: #EEEEEE;
     font-weight: normal;
     font-size: 1rem;
-    font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; }
+    font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
   .pricing-table .price {
     background-color: #F6F6F6;
     padding: 0.9375rem 1.25rem;
@@ -6464,7 +6464,7 @@ select {
     color: #333333;
     font-weight: normal;
     font-size: 2rem;
-    font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; }
+    font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
   .pricing-table .description {
     background-color: #FFFFFF;
     padding: 0.9375rem;
@@ -6526,11 +6526,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -6658,11 +6658,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -6837,11 +6837,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -6932,7 +6932,7 @@ select {
   @media only screen and (min-width:40.063em) {
     .reveal-modal {
       width: 80%;
-      max-width: 81.25rem;
+      max-width: 312.5rem;
       left: 0;
       right: 0;
       margin: 0 auto; } }
@@ -6952,35 +6952,35 @@ select {
   @media only screen and (min-width:40.063em) {
     .reveal-modal.tiny {
       width: 30%;
-      max-width: 81.25rem;
+      max-width: 312.5rem;
       left: 0;
       right: 0;
       margin: 0 auto; } }
   @media only screen and (min-width:40.063em) {
     .reveal-modal.small {
       width: 40%;
-      max-width: 81.25rem;
+      max-width: 312.5rem;
       left: 0;
       right: 0;
       margin: 0 auto; } }
   @media only screen and (min-width:40.063em) {
     .reveal-modal.medium {
       width: 60%;
-      max-width: 81.25rem;
+      max-width: 312.5rem;
       left: 0;
       right: 0;
       margin: 0 auto; } }
   @media only screen and (min-width:40.063em) {
     .reveal-modal.large {
       width: 70%;
-      max-width: 81.25rem;
+      max-width: 312.5rem;
       left: 0;
       right: 0;
       margin: 0 auto; } }
   @media only screen and (min-width:40.063em) {
     .reveal-modal.xlarge {
       width: 95%;
-      max-width: 81.25rem;
+      max-width: 312.5rem;
       left: 0;
       right: 0;
       margin: 0 auto; } }
@@ -6994,7 +6994,7 @@ select {
     @media only screen and (min-width:40.063em) {
       .reveal-modal.full {
         width: 100vw;
-        max-width: 81.25rem;
+        max-width: 312.5rem;
         left: 0;
         right: 0;
         margin: 0 auto; } }
@@ -7068,11 +7068,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -7127,7 +7127,7 @@ select {
   padding: 0.875rem 0;
   list-style-type: none;
   list-style-position: outside;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; }
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
   .side-nav li {
     margin: 0 0 0.4375rem 0;
     font-size: 0.875rem;
@@ -7143,7 +7143,7 @@ select {
     .side-nav li.active > a:first-child:not(.button) {
       color: #20a6ff;
       font-weight: normal;
-      font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; }
+      font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
     .side-nav li.divider {
       border-top: 1px solid;
       height: 0;
@@ -7195,11 +7195,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -7287,11 +7287,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -7344,7 +7344,7 @@ button, .button {
   border-style: solid;
   border-width: 0px;
   cursor: pointer;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: normal;
   line-height: normal;
   margin: 0 0 1.25rem;
@@ -7584,11 +7584,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -7811,11 +7811,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -7879,7 +7879,7 @@ select {
     display: inline;
     margin-left: 1rem;
     margin-bottom: 0.625rem;
-    font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: normal;
     font-size: 0.875rem;
     color: #999999; }
@@ -7940,11 +7940,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -8139,11 +8139,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -8266,11 +8266,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -8358,11 +8358,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -8417,7 +8417,7 @@ select {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 81.25rem; }
+  max-width: 312.5rem; }
   .row:before, .row:after {
     content: " ";
     display: table; }
@@ -9623,11 +9623,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -9821,7 +9821,7 @@ p {
 
 /* Default header styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-style: normal;
   color: #333;
@@ -9942,7 +9942,7 @@ dl dd {
 abbr, acronym {
   text-transform: uppercase;
   font-size: 90%;
-  color: #333;
+  color: #fff;
   cursor: help; }
 
 abbr {
@@ -10077,7 +10077,7 @@ blockquote, blockquote p {
       background-color: initial;
       color: #474747;
       padding: 0 0;
-      font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+      font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: initial; }
       .tabs dd > a:hover, .tabs .tab-title > a:hover {
         background-color: initial; }
@@ -10187,11 +10187,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -10301,11 +10301,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -10474,11 +10474,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -10566,11 +10566,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -10625,7 +10625,7 @@ select {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 81.25rem; }
+  max-width: 312.5rem; }
   .row:before, .row:after {
     content: " ";
     display: table; }
@@ -11831,11 +11831,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -11888,7 +11888,7 @@ button, .button {
   border-style: solid;
   border-width: 0px;
   cursor: pointer;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: normal;
   line-height: normal;
   margin: 0 0 1.25rem;
@@ -12128,11 +12128,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -12220,11 +12220,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -12277,7 +12277,7 @@ button, .button {
   border-style: solid;
   border-width: 0px;
   cursor: pointer;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: normal;
   line-height: normal;
   margin: 0 0 1.25rem;
@@ -12786,7 +12786,7 @@ select {
   border: 1px solid #cccccc;
   padding: 0.5rem;
   font-size: 0.875rem;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: rgba(0, 0, 0, 0.75);
   line-height: normal;
   -webkit-border-radius: 0;
@@ -13045,7 +13045,7 @@ meta.foundation-mq-topbar {
       color: #0072c0;
       padding: 12px 0 12px 0;
       padding-left: 23.33333px;
-      font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+      font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 0.8125rem;
       font-weight: normal;
       text-transform: none; }
@@ -13225,7 +13225,7 @@ meta.foundation-mq-topbar {
     .top-bar.expanded {
       background: initial; }
   .contain-to-grid .top-bar {
-    max-width: 81.25rem;
+    max-width: 312.5rem;
     margin: 0 auto;
     margin-bottom: 0; }
   .top-bar-section {
@@ -13413,11 +13413,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -13611,7 +13611,7 @@ p {
 
 /* Default header styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-style: normal;
   color: #333;
@@ -13732,7 +13732,7 @@ dl dd {
 abbr, acronym {
   text-transform: uppercase;
   font-size: 90%;
-  color: #333;
+  color: #fff;
   cursor: help; }
 
 abbr {
@@ -13888,11 +13888,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -13980,11 +13980,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -14178,7 +14178,7 @@ p {
 
 /* Default header styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-style: normal;
   color: #333;
@@ -14299,7 +14299,7 @@ dl dd {
 abbr, acronym {
   text-transform: uppercase;
   font-size: 90%;
-  color: #333;
+  color: #fff;
   cursor: help; }
 
 abbr {
@@ -14916,11 +14916,11 @@ html, body {
 
 body {
   background: #f5f5f5;
-  color: #333;
+  color: #fff;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   font-style: normal;
   line-height: 1.5;
   position: relative;
@@ -15241,15 +15241,37 @@ th.hide-for-touch {
     display: table-cell !important; } }
 
 /*
- *
+ * --------------------------------------------------------------
+ */
+input[type=text], input[type=password], textarea {
+  border: none;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+  background-color: #fff;
+  color: #9a4263;
+  margin-bottom: 5px; }
+  input[type=text]:hover, input[type=text]:focus, input[type=password]:hover, input[type=password]:focus, textarea:hover, textarea:focus {
+    border: none;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none; }
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  -webkit-text-fill-color: #9a4263 !important; }
+
+/*
+ * Body
  */
 body {
   background: #fff;
   color: #333;
   font-size: 1em;
-  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300; }
 
-a {
+a, a:hover, a:visited, a:focus {
   outline: none;
   color: #a09493;
   text-decoration: none; }
@@ -15257,11 +15279,74 @@ a {
 a:hover, a:focus {
   color: #c58782; }
 
+button {
+  background-color: #fff;
+  color: #9A4263; }
+
+button:hover, button:focus, button:visited, button:active {
+  color: #fff;
+  background: #9A4263; }
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
+  position: relative;
+  width: 100%; }
+  fieldset input[type=text] {
+    width: 80%;
+    border: 0;
+    float: left; }
+  fieldset button {
+    width: 10%;
+    border: 0;
+    float: left;
+    padding: 10px 0 9px; }
+
+.row {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0; }
+
+.pull-right {
+  float: right; }
+
+.pull-left {
+  float: left; }
+
+.bottom-bar {
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  z-index: 999; }
+
+.modal {
+  background-color: #E2C3A3;
+  background-color: rgba(253, 227, 201, 0.77);
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+  -webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0; }
+  .modal .close-reveal-modal {
+    color: #E8A3A3; }
+
+#modalTitle {
+  color: #fff !important; }
+
+/* Hero
+ */
 .hero__wrapper {
   text-align: center;
   height: 100vh;
   overflow: hidden;
-  background: url(../images/bg@home.jpeg) no-repeat center center;
+  background: url(../images/bg@home.jpg) no-repeat center center;
   -webkit-background-size: auto 100vh;
      -moz-background-size: auto 100vh;
        -o-background-size: auto 100vh;
@@ -15345,13 +15430,23 @@ a:hover, a:focus {
     width: 100%;
     top: 50vh;
     position: absolute; }
+    #hero .hero__forms .hero__forms-login form {
+      overflow: hidden;
+      width: 0;
+      opacity: 0; }
+      #hero .hero__forms .hero__forms-login form input[type=text], #hero .hero__forms .hero__forms-login form input[type=password] {
+        text-align: right; }
+    #hero .hero__forms .hero__forms-signup form {
+      overflow: hidden;
+      width: 0;
+      opacity: 0; }
 
 @media screen and (min-aspect-ratio: 1440/960) {
   .hero__crop .tilt__back, .hero__crop .tilt__front, .hero__wrapper {
-    -webkit-background-size: 100vw auto;
-       -moz-background-size: 100vw auto;
-         -o-background-size: 100vw auto;
-            background-size: 100vw auto; }
+    -webkit-background-size: 100vw auto !important;
+       -moz-background-size: 100vw auto !important;
+         -o-background-size: 100vw auto !important;
+            background-size: 100vw auto !important; }
   .hero__img {
     width: 100vw;
     height: auto; } }
@@ -15373,15 +15468,447 @@ a:hover, a:focus {
   .mobile-note {
     display: block; } }
 
+/* Project
+ */
+.project__buttons .project__button-boards, .project__buttons .project__button-sprints {
+  display: inline-block;
+  width: 48%;
+  line-height: 4;
+  text-align: center;
+  font-family: 'Playfair Display', Georgia, serif;
+  background-color: #9E8590;
+  color: #fff;
+  -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out; }
+  .project__buttons .project__button-boards:hover, .project__buttons .project__button-sprints:hover {
+    background-color: #c58782; }
+
+.project__description {
+  margin-top: 50px;
+  padding: 10px;
+  background-color: #9E8590;
+  width: 96%; }
+  .project__description .project__description-title {
+    color: #cc4125; }
+  .project__description p {
+    color: #fff; }
+
+/* Boards
+ */
+#boards {
+  width: 100%;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+     -moz-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
+          flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden; }
+  #boards .board {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 320px;
+       -moz-box-flex: 0;
+        -ms-flex: 0 0 320px;
+            flex: 0 0 320px;
+    position: relative;
+    width: 320px;
+    margin-right: 10px; }
+    #boards .board .board__header {
+      position: relative;
+      background-color: #BD6262;
+      z-index: 1000;
+      padding: 0;
+      display: inline-block; }
+      #boards .board .board__header .board__header-title {
+        color: #fff;
+        display: inline-block;
+        padding: 7px 10px 7px 15px;
+        line-height: 1;
+        margin: 0;
+        cursor: move; }
+      #boards .board .board__header .board__header-controls {
+        display: inline-block;
+        padding-right: 10px;
+        float: right;
+        line-height: 1.8; }
+        #boards .board .board__header .board__header-controls a {
+          color: #fff;
+          line-height: 24px; }
+          #boards .board .board__header .board__header-controls a:hover {
+            color: #FF7373; }
+    #boards .board .board__tasks {
+      padding: 20px 0 30px 0;
+      max-width: 360px;
+      margin-top: -8px;
+      margin-left: 5px;
+      background-color: #F5E4D6;
+      min-height: 100px; }
+      #boards .board .board__tasks .board__task {
+        margin: 7px;
+        padding: 10px;
+        background-color: #fff;
+        color: #656363;
+        font-size: 15px; }
+    #boards .board .board__add-task {
+      margin-top: -50px;
+      text-align: right;
+      margin-right: 10px; }
+
+/* Boards
+ */
+#board-sprints {
+  width: 100%;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+     -moz-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
+          flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden; }
+  #board-sprints .board {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 320px;
+       -moz-box-flex: 0;
+        -ms-flex: 0 0 320px;
+            flex: 0 0 320px;
+    position: relative;
+    width: 320px;
+    margin-right: 10px; }
+    #board-sprints .board .board__header {
+      position: relative;
+      background-color: #BD6262;
+      z-index: 1000;
+      padding: 0;
+      display: inline-block; }
+      #board-sprints .board .board__header .board__header-title2 {
+        color: #fff;
+        display: inline-block;
+        padding: 7px 10px 7px 15px;
+        line-height: 1;
+        margin: 0; }
+      #board-sprints .board .board__header .board__header-controls {
+        display: inline-block;
+        padding-right: 10px;
+        float: right;
+        line-height: 1.8; }
+        #board-sprints .board .board__header .board__header-controls a {
+          color: #fff;
+          line-height: 24px; }
+          #board-sprints .board .board__header .board__header-controls a:hover {
+            color: #FF7373; }
+    #board-sprints .board .tasks {
+      padding: 20px 0 30px 0;
+      max-width: 360px;
+      margin-top: -8px;
+      margin-left: 5px;
+      background-color: #F5E4D6;
+      min-height: 100px; }
+      #board-sprints .board .tasks .task {
+        margin: 7px;
+        padding: 10px;
+        background-color: #fff;
+        color: #656363;
+        font-size: 15px;
+        position: relative; }
+    #board-sprints .board .board__add-task {
+      margin-top: -50px;
+      text-align: right;
+      margin-right: 10px; }
+  #board-sprints .sprint {
+    height: 190px;
+    background-color: #9a4263;
+    width: 100%;
+    margin-bottom: 10px; }
+    #board-sprints .sprint .sprint__header {
+      padding: 5px;
+      margin: 0;
+      width: 100%;
+      background-color: #fff; }
+      #board-sprints .sprint .sprint__header p {
+        display: inline-block;
+        color: #9a4263;
+        text-transform: uppercase;
+        font-size: 14px;
+        padding: 0;
+        margin: 0;
+        line-height: 1; }
+    #board-sprints .sprint .tasks {
+      height: 100%; }
+    #board-sprints .sprint .task {
+      margin: 7px;
+      padding: 10px;
+      background-color: #fff;
+      color: #656363;
+      font-size: 15px;
+      float: left;
+      width: 200px;
+      height: 135px;
+      position: relative;
+      font-size: 15px;
+      line-height: 1.2; }
+  #board-sprints .task-board-name {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 10px;
+    color: #9a4263;
+    text-transform: uppercase; }
+
+/* Topbar
+ */
 #topbar {
   margin: 0 50px;
   padding: 5px;
   height: 50px; }
+  #topbar .topbar__logo {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #d9d2d0;
+    margin: auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+    width: 200px;
+    text-align: center;
+    line-height: 56px;
+    pointer-events: none; }
   #topbar .topbar__nav .right {
     float: right; }
   #topbar .topbar__nav .topbar__nav-anchor {
     line-height: 40px; }
 
+/* Projects 
+ */
+#projects {
+  margin-top: 40px;
+  margin-bottom: 50px; }
+  #projects .project-box {
+    float: left;
+    width: 260px;
+    height: 240px;
+    text-align: center;
+    position: relative;
+    background-color: #9a4263;
+    margin: 5px; }
+    #projects .project-box h1 {
+      color: #fff;
+      font-size: 120px;
+      line-height: 190px;
+      margin: 0;
+      padding: 0;
+      -webkit-transition: all 0.5s ease-in-out;
+         -moz-transition: all 0.5s ease-in-out;
+           -o-transition: all 0.5s ease-in-out;
+              transition: all 0.5s ease-in-out; }
+    #projects .project-box .project-box__header {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background-color: #F4D7C9;
+      position: absolute; }
+      #projects .project-box .project-box__header h4 {
+        line-height: 50px;
+        padding: 0;
+        margin: 0; }
+    #projects .project-box:hover {
+      opacity: 0.8; }
+      #projects .project-box:hover h1 {
+        -webkit-transform: scale(1.1, 1.1);
+           -moz-transform: scale(1.1, 1.1);
+            -ms-transform: scale(1.1, 1.1);
+             -o-transform: scale(1.1, 1.1);
+                transform: scale(1.1, 1.1); }
+
+/* Project
+ */
+.project__new-board-form {
+  width: 300px; }
+
+/* Page
+ */
 #page {
+  position: relative;
+  padding: 25px 30px;
   margin: 0 50px;
   background-color: #d9d2d0; }
+  #page .page__buttons {
+    position: absolute;
+    top: 0;
+    right: 0; }
+    #page .page__buttons a {
+      float: right;
+      display: block;
+      background-color: #9a4263;
+      padding: 7px 10px 5px 10px;
+      color: #fff;
+      -webkit-transition: all 0.4s ease-in-out;
+         -moz-transition: all 0.4s ease-in-out;
+           -o-transition: all 0.4s ease-in-out;
+              transition: all 0.4s ease-in-out; }
+      #page .page__buttons a:hover {
+        background-color: #fff;
+        color: #9a4263; }
+  #page .page__back-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    background-color: #9a4263;
+    padding: 7px 10px 5px 10px;
+    color: #fff;
+    -webkit-transition: all 0.4s ease-in-out;
+       -moz-transition: all 0.4s ease-in-out;
+         -o-transition: all 0.4s ease-in-out;
+            transition: all 0.4s ease-in-out; }
+    #page .page__back-button:hover {
+      background-color: #fff;
+      color: #9a4263; }
+
+.page__header {
+  margin-bottom: 30px; }
+  .page__header .page__header-title {
+    color: #5b4750;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 100; }
+  .page__header .page__header-subtitle {
+    text-align: center;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    color: #5B4750; }
+    .page__header .page__header-subtitle a {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      color: #5B4750; }
+
+/* Alertify
+ */
+/**
+  * alertifyjs 1.4.1 http://alertifyjs.com
+  * AlertifyJS is a javascript framework for developing pretty browser dialogs and notifications.
+  * Copyright 2015 Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com) 
+  * Licensed under MIT <http://opensource.org/licenses/mit-license.php>*/
+.alertify .ajs-dimmer {
+  background-color: #9A4263;
+  opacity: 1; }
+
+.alertify .ajs-dialog {
+  max-width: 50%;
+  min-height: 137px;
+  background-color: #F4F4F4;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none; }
+
+.alertify .ajs-header {
+  padding: 1.5rem 2rem;
+  color: #555;
+  background-color: #fff;
+  font-family: 'Questrial', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1.6em;
+  font-weight: 700; }
+
+.alertify .ajs-body {
+  font-family: Roboto, sans-serif;
+  color: #555; }
+
+.alertify .ajs-body .ajs-content .ajs-input {
+  width: 100%;
+  margin: 0;
+  padding: 0.65em 1em;
+  font-size: 1em;
+  background-color: #FFF;
+  outline: 0;
+  color: rgba(0, 0, 0, 0.7); }
+
+.alertify .ajs-body .ajs-content .ajs-input:active {
+  background-color: #FAFAFA; }
+
+.alertify .ajs-body .ajs-content .ajs-input:focus {
+  color: rgba(0, 0, 0, 0.85); }
+
+.alertify.ajs-maximized:not(.ajs-resizable) .ajs-content, .alertify.ajs-resizable .ajs-content {
+  top: 64px;
+  bottom: 74px; }
+
+.alertify .ajs-footer {
+  background-color: #fff;
+  padding: 1rem 2rem; }
+
+.alertify-notifier .ajs-message {
+  background: rgba(255, 255, 255, 0.95);
+  color: #000;
+  text-align: center;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  text-shadow: none !important; }
+
+.alertify-notifier .ajs-message.ajs-success {
+  color: #fff;
+  background: #87D37C; }
+
+.alertify-notifier .ajs-message.ajs-error {
+  color: #fff;
+  background: #D35400; }
+
+.alertify-notifier .ajs-message.ajs-warning {
+  background: rgba(252, 248, 215, 0.95); }

@@ -10,13 +10,50 @@
 
 {% block container %}
 	<div id="page">
-        {% for project in projects %}
-            <a href="/project/{{ project.pk }}">{{ project.name }} </a>
+		<div class="page__buttons">
+			<a href="#" data-reveal-id="add-project__modal"><i class="icon-plus"></i></a>
+		</div>
+		<header class="page__header">
+			<h2 class="page__header-title"><a href="#" data-reveal-id="add-project__modal">projects</a></h2>
+		</header>
+		
+		<section id="projects">
+	        {% for project in projects %}
+	        	<a href="/project/{{ project.pk }}">
+		        	<div class="project-box">
+			            <h1>{{ project.name|make_list|first }}</h1>
+			            <div class="project-box__header">
+				            <h4>{{ project.name }}</h4>
+			            </div>
+		        	</div>
+	        	</a>
+	        {% endfor %}
+	        <div class="clearfix"></div>
+		</section>
+	</div>
 
-            <br>
-        {% endfor %}
+	<div id="add-project__modal" class="modal medium reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+		<h2 id="modalTitle">Add Project</h2>
+		<form action="/new_project/" method="post">
+			{% csrf_token %}
+			<input type="text" name="name" id="name" placeholder="Project name" data-required="name is mandatory.">
+			
+			<label for="team">team</label>
+			<select name="team_id" id="team_id">
+				<option value="0">None</option>
+				{% for team in teams %}
+					<option value="{{ team.id }}">{{ team.name }}</option>
+				{% endfor %}
+			</select>
 
-		<a href="/new_project/">Create a new project</a>
+			<label for="visibility">Visible for everyone</label>
+			<input type="checkbox" name="visibility" id="visibility" value="False"> 
+	
+			<textarea name="description" id="description" cols="30" rows="10" placeholder="Project description"></textarea>
+			
+			<button type="submit" data-submit="true" class="button button--saqui button--inverted button--text-thick button--text-upper button--size-s" data-text="Add Project">Add Project</button>
+		</form>
+		<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 	</div>
 {% endblock %}
 

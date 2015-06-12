@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}Project {{ project.name }}{% endblock %}
+
+{% block header %}
+    {% include "partials/topbar.html" %}
+{% endblock %}
+
+{% block container %}
+	<div id="page">
+		<a class="page__back-button" href="/project/{{ project.id }}"><i class="icon-action-undo"></i></a>
+		
+		<div class="page__buttons">
+			<a href="#" data-reveal-id="add-sprint__modal"><i class="icon-plus"></i></a>
+		</div>
+		<header class="page__header">
+			<h2 class="page__header-title">{{ project.name }}</h2>
+			<h5 class="page__header-subtitle"><a href="#" data-reveal-id="add-sprint__modal">sprints</a></h5>
+		</header>
+		
+		<div id="board-sprints" class="row collapse">
+			<div class="board small-5 columns">
+				<header class="board__header">
+					<h6 class="board__header-title2">All Tasks</h6>
+					<span class="board__header-controls">
+						<a class="board__add-task-anchor" href="#" data-reveal-id="add-task__modal">+ add task</a>
+						<div class="board__add-task">
+							<div id="add-task__modal" class="modal reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+								<h2 id="modalTitle">Add Task</h2>
+								<form action="/new_task/" method="post">
+									{% csrf_token %}
+									<div class="row">
+										<input type="text" name="title" placeholder="title*" data-required="title is mandatory" maxlength="124">
+										<div class="row">
+											<div class="small-7 columns">
+												<label for="points"> points</label>
+												<select name="points" id="points">
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+												</select>
+											</div>
+											<div class="small-8 columns">
+												<label for="sprint_id">sprint</label>
+												<select name="sprint_id" id="sprint_id">
+													<option value=""></option>
+													{% for sprint in sprints %}
+														<option value="{{ sprint.id }}">{{ sprint.title }}</option>
+													{% endfor %}
+												</select>
+											</div>
+											<div class="small-5 columns">
+												<label for="board_id">board</label>
+												<select name="board_id" id="board_id">
+													{% for board in boards %}
+														<option value="{{ board.id }}">{{ board.title }}</option>
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+										<textarea name="description" id="description" placeholder="description" cols="30" rows="10"></textarea>
+										<input type="hidden" name="project_id" value="{{ project.id }}">
+										<input type="hidden" name="order" value="0">
+										<input type="hidden" name="status" value="open">
+										<input type="hidden" name="from_page" value="sprints">
+										<button type="submit" data-submit="true" class="button button--saqui button--inverted button--text-thick button--text-upper button--size-s" data-text="Add Task">Add Task</button>
+									</div>
+								</form>  
+								<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+							</div>
+						</div>
+					</span>
+				</header>
+				<ul id="tasks" class="tasks no-bullet">
+				{% for board in project.boards.all %}
+					{% for task in board.get_tasks_without_sprint %}
+						<li id="task-{{ task.id }}" class="task" data-task-id="{{ task.id }}" href="#" data-reveal-id="task-{{ task.id }}__modal">
+							{{ task.title|truncatechars:100 }}
+							<span class="task-board-name">{{ board.title }}</span>
+						</li>
+					{% endfor %}
+				{% endfor %}
+				</ul>
+			</div>
+			<div class="sprints small-15 columns">
+			{% for sprint in project.sprints.all %}
+				<div class="sprint" data-sprint-id="{{ sprint.id }}">
+					<header class="sprint__header">
+						<p><small>SPRINT:</small> {{ sprint.title}}</p> / 
+						<p><small>START DATE:</small> {{ sprint.start_date|date:"d My"|lower  }}</p> / 
+						<p><small>END DATE:</small> {{ sprint.end_date|date:"d My"|lower  }}</p>
+					</header>
+					<ul class="tasks no-bullet inline-list" data-sprint-id="{{ sprint.id }}">
+						{% for task in sprint.tasks.all %}
+						<li id="task-{{ task.id }}" class="task" data-task-id="{{ task.id }}" href="#" data-reveal-id="task-{{ task.id }}__modal">
+							{{ task.title|truncatechars:100 }}
+							<span class="task-board-name">{{ task.board_id }}</span>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endfor %}
+			</div>
+		</div>
+		<div id="add-sprint__modal" class="modal reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+			<h2 id="modalTitle">Add Sprint</h2>
+			<form action="/new_sprint/" method="post">
+				{% csrf_token %}
+				<div class="row">
+					<input type="text" name="title" placeholder="title*" data-required="title is mandatory" maxlength="32">
+					<div class="row">
+						<div class="small-10 columns">
+							<label for="start_date">start date</label>
+							<input type="text" name="start_date" class="datepicker" data-required="start date is mandatory">
+						</div>
+						<div class="small-10 columns">
+							<label for="end_date">end date</label>
+							<input type="text" name="end_date" class="datepicker" data-required="end date is mandatory">
+						</div>
+						</div>
+					</div>
+					<textarea name="description" id="description" placeholder="description" cols="30" rows="10"></textarea>
+					<input type="hidden" name="project_id" value="{{ project.id }}">
+					<input type="hidden" name="order" value="0">
+					<button type="submit" data-submit="true" class="button button--saqui button--inverted button--text-thick button--text-upper button--size-s" data-text="Add Sprint">Add Sprint</button>
+				</div>
+			</form>  
+			<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+		</div>
+		{% for board in project.boards.all %}
+			{% for task in board.tasks.all %}
+				<div id="task-{{ task.id }}__modal" class="modal tiny reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+					<h2 id="modalTitle">Update Task</h2>
+					<form action="/update_task/" method="post">
+						{% csrf_token %}
+						<div class="row">
+							<input type="text" name="title" placeholder="title*" data-required="title is mandatory" maxlength="124" value="{{ task.title }}">
+							<div class="row">
+								<div class="small-7 columns">
+									<label for="points"> points</label>
+									<select name="points" id="points">
+										<option value="1" {% if task.points == 1 %}selected{% endif %}>1</option>
+										<option value="2" {% if task.points == 2 %}selected{% endif %}>2</option>
+										<option value="3" {% if task.points == 3 %}selected{% endif %}>3</option>
+										<option value="4" {% if task.points == 4 %}selected{% endif %}>4</option>
+										<option value="5" {% if task.points == 5 %}selected{% endif %}>5</option>
+									</select>
+								</div>
+								<div class="small-8 columns">
+									<label for="board_id">board</label>
+									<select name="board_id" id="board_id">
+										{% for board in boards %}
+											<option value="{{ board.id }}" {% if task.board_id == board %}selected{% endif %}>{{ board.title }}</option>
+										{% endfor %}
+									</select>
+								</div>
+								<div class="small-5 columns">
+									<label for="status">status</label>
+									<select name="status" id="status">
+										<option value="open" {% if task.status == 'open' %}selected{% endif %}>open</option>
+										<option value="closed" {% if task.status == 'closed' %}selected{% endif %}>closed</option>
+									</select>
+								</div>
+							</div>
+							<textarea name="description" id="description" placeholder="description" cols="30" rows="10">{{ task.description }}</textarea>
+							<input type="hidden" name="project_id" value="{{ project.id }}">
+							<input type="hidden" name="task_id" value="{{ task.id }}">
+							<input type="hidden" name="order" value="0">
+							<input type="hidden" name="status" value="open">
+							<input type="hidden" name="from_page" value="sprints">
+							<button type="submit" data-submit="true" class="button button--saqui button--inverted button--text-thick button--text-upper button--size-s" data-text="Update Task">Update Task</button>
+						</div>
+					</form>  
+					<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+				</div>
+			{% endfor %}
+		{% endfor %}
+	</div>
+{% endblock %}
+
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock %}

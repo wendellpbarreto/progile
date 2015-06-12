@@ -93,7 +93,7 @@ class GenericView(View):
             except Exception, e:
                 logger.error(str(e))
 
-            if slug != "home" and slug != "signin":
+            if slug != "home" and slug != "signin" and slug != "login":
                 logger.warning(">user wants " + slug)
                 logger.warning(">user isn't authenticated");
                 return HttpResponseRedirect('/home/')

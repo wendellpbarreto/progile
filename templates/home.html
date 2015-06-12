@@ -16,9 +16,9 @@
             <div class="hero__meta">
                 <h1><span>An Agile Project Manager</span>Progile</h1>
                 <div class="hero__meta-anchors">
-                    <a href="#">sign up</a>
+                    <a href="javascript:void(0);" class="hero__meta-anchor-login">login</a>
                     <span>/</span>
-                    <a href="#">login</a>
+                    <a href="javascript:void(0);" class="hero__meta-anchor-signup">sign up</a>
                 </div>
             </div>
             <div class="hero__forms">
@@ -26,23 +26,23 @@
                     <div class="small-20 medium-12 small-centered medium-centered column">
                         <div class="row">
                             <div class="hero__forms-login small-20 medium-10 columns">
-                                <form action="/login/" method="post">
+                                <form action="/login/" method="post" class="pull-right">
                                     {% csrf_token %}
 
-                                    <input type="text" name="username" placeholder="username">
-                                    <input type="password" name="password" placeholder="pass">
-                                    <input type="submit" value="login" data-submit="true">
+                                    <input type="text" name="username" placeholder="username*" data-required="username is mandatory">
+                                    <input type="password" name="password" placeholder="pass*" data-required="pass is mandatory, uh?!">
+                                    <button type="submit" data-submit="true" class="button button--saqui button--inverted button--text-thick button--text-upper button--size-s pull-right" data-text="Login">Login</button>
                                 </form>  
                             </div>
                             <div class="hero__forms-signup small-20 medium-10 columns">
                                 <form action="/signin/" method="post">
                                     {% csrf_token %}
-                                    <input type="text" name="first_name" placeholder="first name" data-required="true">
+                                    <input type="text" name="first_name" placeholder="first name*" data-required="first name is mandatory">
                                     <input type="text" name="last_name" placeholder="last name">
-                                    <input type="text" name="username" placeholder="username" data-required="true">
-                                    <input type="text" name="email" placeholder="email" data-required="true">
-                                    <input type="password" name="password" placeholder="pass" data-required="true">
-                                    <input type="submit" value="sign up" data-submit="true">
+                                    <input type="text" name="username" placeholder="username*" data-required="username is mandatory">
+                                    <input type="text" name="email" placeholder="email*" data-required="email is mandatory">
+                                    <input type="password" name="password" placeholder="pass*" data-required="pass is mandatory, uh?!">
+                                    <button type="submit" data-submit="true" class="button button--saqui button--inverted button--text-thick button--text-upper button--size-s" data-text="Sign Up">Sign Up</button>
                                 </form>  
                             </div>
                         </div>
