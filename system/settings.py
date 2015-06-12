@@ -99,8 +99,8 @@ DATABASES = {
         'default': {
             'ENGINE':'django.db.backends.postgresql_psycopg2',
             'NAME': 'progile',
-            'USER': 'progile',
-            'PASSWORD': '',
+            'USER': 'tronco_admin',
+            'PASSWORD': 'p@$$:=dr@w!ng=tronco',
             'HOST': 'localhost',
             'PORT': '',
         }

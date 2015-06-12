@@ -14,8 +14,7 @@ while true; do
         [Yy]* )
         	sudo -u postgres psql -c 'DROP DATABASE progile'
 			sudo -u postgres psql -c 'CREATE DATABASE progile'
-			sudo -u postgres psql -c 'CREATE USER progile'
-			sudo -u postgres psql -c 'GRANT ALL PRIVILEGES ON DATABASE progile TO progile'
+			sudo -u postgres psql -c 'GRANT ALL PRIVILEGES ON DATABASE progile TO tronco_admin'
 			# sudo -u postgres psql -d progile -c 'CREATE EXTENSION hstore' 
 
 			break;;
